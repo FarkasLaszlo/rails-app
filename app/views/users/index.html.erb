@@ -1,0 +1,37 @@
+<h1> Users </h1>
+<table class="table table-striped table-bordered">
+  <tr>
+    <% @keys.each do |key| %>
+      <th>
+        <% if key == "created_at" %>
+          Registration date
+        <% else %>
+          <%= key.capitalize %>
+        <% end %>
+      </th>
+    <% end %>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <% @keys.each do |key| %>
+        <td class="user-row align-middle">
+          <% if key == "created_at" %>
+            <%= localize(user.send(key) ,format: "%Y %B %d %H:%M:%S", locale: "hu") %>
+          <% elsif key == "avatar" %>
+            <%= user_avatar(user) %>
+          <% else %>
+            <%= user.send(key) %>
+          <% end%>
+        </td>
+      <% end %>
+      <td class="align-middle"><%= link_to "Show", user_path(user), class: "btn btn-primary" %></td>
+      <td class="align-middle"><%= link_to "Edit", edit_user_path(user), class: "btn btn-primary" %></td>
+      <td class="align-middle"><%= button_to 'Delete', user_path(user), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Back', root_path %>
+<%= link_to 'New', new_user_path %>

@@ -1,0 +1,66 @@
+.table {
+  text-align: center;
+}
+
+.show-user {
+  .card {
+    width: 25%;
+    .card-body:nth-child(3) {
+      display: flex;
+      * {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.preview > div > img {
+  width: 250px;
+}
+
+.user-row > img {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-links {
+  display: grid;
+  grid-template-columns: 10% 10% 10% auto 15% 10% 10%;
+  grid-template-rows: 3vh;
+  margin-top: 20px;
+  justify-items: center;
+  align-items: center;
+
+  img {
+    width:50px;
+    grid-column: 6;
+  }
+
+  p {
+    margin: 0;
+    grid-column: 5;
+    a {
+      margin-left: 1vw;
+    }
+  }
+
+  .registration-link {
+    grid-column: 6;
+  }
+
+  .blog-link {
+    grid-column: 2;
+  }
+
+  .logout-link {
+    grid-column: 7;
+  }
+}
+
+a {
+  margin-right: 1%;
+}
+
+li {
+  list-style: none;
+}

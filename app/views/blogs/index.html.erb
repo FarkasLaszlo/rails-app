@@ -1,0 +1,19 @@
+<h1>Blogs</h1>
+<% if current_user %>
+  <%= link_to "Write a new blog", new_blog_path, class: "btn btn-primary new-blog" %>
+<% end %>
+<div class="blogs">
+  <% @blogs.each do |blog| %>
+    <div class="card text-white border-dark bg-info mb-3">
+      <div class="card-header">
+        <h5 class="card-title">Title: <%= blog.title %></h5>
+        <h6 class="card-subtitle">Written by <%= blog.author %></h6>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Content: <%= blog_content(blog) %></p>
+        <p class="card-text">Category: <%= blog.category %></p>
+      </div>
+      <div class="card-footer"><%= blog.publication_date %><%= link_to "Read this article", blog_path(blog), class: "btn btn-success" %></div>
+    </div>
+  <% end %>
+</div>

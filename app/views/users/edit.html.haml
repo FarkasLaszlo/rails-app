@@ -1,0 +1,33 @@
+= form_for @user do |form|
+  - if @user.errors.any?
+    %ul
+      - @user.errors.full_messages.each do |message|
+        %li{:class=>"alert alert-danger"}= message
+  %p
+    = form.label :name
+    %br
+    = form.text_field :name, class: "form-control"
+
+  %p
+    = form.label :email
+    %br
+    = form.text_field :email, class: "form-control"
+
+  %div
+    = form.label :avatar
+    %br
+    = form.file_field :avatar
+  %p
+    = form.label :password
+    %br
+    = form.password_field :password, class: "form-control"
+
+  %p
+    = form.label :password_confirmation
+    %br
+    = form.password_field :password_confirmation, class: "form-control"
+
+  %p
+    = form.submit value: "Update user", class: "btn btn-primary"
+
+= link_to 'Back', "javascript:history.back()"

@@ -1,0 +1,17 @@
+<div class="nav-links">
+  <%= link_to 'Home', root_path, class: "home-link" %>
+  <%= link_to 'Blogs', blogs_path, class: "blog-link" %>
+  <% if current_user %>
+    <%= link_to 'Users', users_path, class: "users-link" %>
+  <% end %>
+  <% unless current_user %>
+    <%= link_to 'Registration', registration_path, class: "registration-link" %>
+    <%= link_to 'Login', login_path, class: "login-link" %>
+  <% end %>
+  <% if current_user %>
+    <p>Welcome: <%= link_to current_user.name, user_path(current_user) %></p>
+    <%= user_avatar(current_user) %>
+    <%= link_to "Log out", logout_path, method: :delete, class: "logout-link" %>
+  <% end %>
+</div>
+<hr>
