@@ -30,4 +30,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail address"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              invalid: "is not valid, it has to contain at least 8 characters, at least one uppercase letter, one lowercase letter, and one number"
+            email:
+              invalid: "is not valid. Please use an existing e-mail address"
+              blank: "can't be blank"

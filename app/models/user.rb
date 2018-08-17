@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :email, format: { with: /\A[a-z0-9.]+@([a-z0-9]+\.)+[a-z]+\z/ }, uniqueness: true
   has_secure_password
-  validates :password, confirmation: true, length: { in: 5..20 }
+  validates :password, confirmation: true, format: { with: /\A(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}\z/ }
   validates :password_confirmation, presence: true
 
   def User.digest(string)

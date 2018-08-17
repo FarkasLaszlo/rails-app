@@ -1,11 +1,6 @@
 <h1> Create User </h1>
-<%= form_with scope: :user, url: users_path , local: true do |form| %>
-  <% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |message| %>
-      <li class="alert alert-danger"><%= message %></li>
-    <% end %>
-  <% end %>
-
+<%= form_with scope: :user, url: registration_path , local: true do |form| %>
+  <%= render "layouts/errors", locals: @user %>
   <p>
   <%= form.label :name %><br>
   <%= form.text_field(:name, {:class => "form-control"}) %>

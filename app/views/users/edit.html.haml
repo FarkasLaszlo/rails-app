@@ -1,8 +1,5 @@
 = form_for @user do |form|
-  - if @user.errors.any?
-    %ul
-      - @user.errors.full_messages.each do |message|
-        %li{:class=>"alert alert-danger"}= message
+  = render "layouts/errors", locals: @user
   %p
     = form.label :name
     %br

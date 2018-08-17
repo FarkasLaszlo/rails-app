@@ -22,7 +22,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.author = current_user.serial
     @blog.publication_date = localize(Time.now, format: "%Y %B %d %H:%M:%S", locale: "hu")
-    if @blog.save!
+    if @blog.save
       redirect_to action: 'index'
     else
       render 'new'
@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if @blog.update!(blog_params)
+    if @blog.update(blog_params)
       redirect_to action: 'show'
     else
       render 'edit'

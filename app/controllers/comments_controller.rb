@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update!(comment_params)
+    if @comment.update(comment_params)
       redirect_to blog_path(@blog)
     else
       render 'edit'
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment.author = current_user.serial
     @comment.date = localize(Time.now, format: "%Y %B %d %H:%M:%S", locale: "hu")
     @comment.blog_id = params[:blog_id]
-    if @comment.save!
+    if @comment.save
       redirect_to blog_path(@blog)
     else
       render 'new'
