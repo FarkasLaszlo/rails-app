@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.author = current_user.name
+    @comment.author = current_user.serial
     @comment.date = localize(Time.now, format: "%Y %B %d %H:%M:%S", locale: "hu")
     @comment.blog_id = params[:blog_id]
     if @comment.save!
@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
   end
 
   def has_access
-    unless current_user.name == @comment.author
+    unless current_user.serial == @comment.author
       redirect_to blog_path(params[:blog_id])
     end
   end

@@ -6,15 +6,15 @@ module SessionsHelper
 
   def remember(user)
     user.remember
-    cookies.encrypted.permanent[:remember] = { value: "user_id: #{user.id}, token: #{user.remember_token}", httponly: true }
+    cookies.encrypted.permanent[:remember] = { value: { user_id: user.id, token: user.remember_token }.to_json, httponly: true }
   end
 
   def current_user
+    remember_cookie = cookies.encrypted[:remember]
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
-    elsif (cookies.encrypted[:remember] && user_id = JSON.parse(cookies.encrypted[:remember])["user_id"])
-      user = User.find_by(id: user_id)
-      if user && user.authenticated?(JSON.parse(cookies.encrypted[:remember])["token"])
+    elsif (remember_cookie && user_id = JSON.parse(remember_cookie)["user_id"])
+      if (user = User.find_by(id: user_id)) && user.authenticated?(JSON.parse(remember_cookie)["token"])
         log_in user
         @current_user = user
       end

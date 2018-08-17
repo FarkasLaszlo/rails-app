@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  #include Friendlyable
   before_create :set_serial
   mount_uploader :avatar, AvatarUploader
   attr_accessor :remember_token
@@ -43,5 +42,4 @@ class User < ApplicationRecord
       break unless User.where(serial: serial).exists?
     end
   end
-
 end

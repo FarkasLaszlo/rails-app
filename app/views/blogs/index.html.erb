@@ -7,7 +7,7 @@
     <div class="card text-white border-dark bg-info mb-3">
       <div class="card-header">
         <h5 class="card-title">Title: <%= blog.title %></h5>
-        <h6 class="card-subtitle">Written by <%= blog.author %></h6>
+        <h6 class="card-subtitle">Written by <%= blog_author(blog) %></h6>
       </div>
       <div class="card-body">
         <p class="card-text">Content: <%= blog_content(blog) %></p>

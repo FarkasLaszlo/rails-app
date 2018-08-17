@@ -1,4 +1,6 @@
 class BlogsController < ApplicationController
+  include BlogsHelper
+
   before_action :check_user, except: [:index, :show]
   before_action :get_blog, only: [:edit, :update, :destroy, :show]
   before_action :has_access, only: [:edit, :update, :destroy]
@@ -18,7 +20,7 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
-    @blog.author = current_user.name
+    @blog.author = current_user.serial
     @blog.publication_date = localize(Time.now, format: "%Y %B %d %H:%M:%S", locale: "hu")
     if @blog.save!
       redirect_to action: 'index'
@@ -56,7 +58,7 @@ class BlogsController < ApplicationController
   end
 
   def has_access
-    unless current_user.name == @blog.author
+    unless current_user.serial == @blog.author
       redirect_to blogs_path
     end
   end

@@ -19,7 +19,7 @@
       <% @keys.each do |key| %>
         <td class="user-row align-middle">
           <% if key == "created_at" %>
-            <%= localize(user.send(key) ,format: "%Y %B %d %H:%M:%S", locale: "hu") %>
+            <%= registration_date(user) %>
           <% elsif key == "avatar" %>
             <%= user_avatar(user) %>
           <% else %>
