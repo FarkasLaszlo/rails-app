@@ -10,26 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_110203) do
+ActiveRecord::Schema.define(version: 2018_08_28_064449) do
 
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.string "publication_date"
     t.text "content"
-    t.string "author"
     t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
+
+  create_table "blogs_categories", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.bigint "category_id"
+    t.index ["blog_id"], name: "index_blogs_categories_on_blog_id"
+    t.index ["category_id"], name: "index_blogs_categories_on_category_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "author"
     t.text "content"
-    t.string "date"
-    t.bigint "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.bigint "user_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,8 +55,11 @@ ActiveRecord::Schema.define(version: 2018_08_16_110203) do
     t.string "remember_digest"
     t.string "avatar"
     t.string "serial", null: false
+    t.integer "level"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["serial"], name: "index_users_on_serial", unique: true
   end
 
-  add_foreign_key "comments", "blogs"
+  add_foreign_key "blogs", "users"
+  add_foreign_key "comments", "users"
 end

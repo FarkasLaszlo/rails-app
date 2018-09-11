@@ -1,16 +1,21 @@
-<h1>New comment</h1>
-<%= form_with scope: :comment, url: blog_comments_path , local: true do |form| %>
+<h1><%= translate_text("New comment") %></h1>
+
+<% if @comment.comment %>
+  <%= render 'comment', comment: @comment.comment %>
+<% end %>
+
+<%= form_with scope: :comment, url: create_blog_comment_path(blog_id: params[:blog_id], comment_id: params[:comment_id]) , local: true do |form| %>
   <%= render "layouts/errors", locals: @comment %>
   <p>
-  <%= form.label :content %><br>
+  <%= form.label :content, translate_text("Content") %><br>
   <%= form.text_area(:content, {:class => "form-control"}) %>
   </p>
 
   <p>
-  <%= form.submit("Submit your comment", {:class => "btn btn-primary"}) %>
+  <%= form.submit(translate_text("Submit your comment"), {:class => "btn btn-primary"}) %>
   </p>
 
 <% end %>
 
-<%= link_to 'Back', "javascript:history.back()" %>
+<%= link_to translate_text('Back'), blog_path(id: params[:blog_id]) %>
 

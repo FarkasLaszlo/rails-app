@@ -39,8 +39,8 @@ gem 'jquery-rails'
 gem "haml-rails", "~> 1.0"
 gem 'rails-i18n', '~> 5.1'
 gem 'carrierwave', '~> 1.0'
-gem 'friendly_id', '~> 5.2.0'
-gem 'encrypted_id'
+gem 'faker', '~> 1.9', '>= 1.9.1'
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

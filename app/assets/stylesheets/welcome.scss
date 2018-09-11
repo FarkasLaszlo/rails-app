@@ -5,3 +5,36 @@
 .title {
   text-align: center;
 }
+
+.outer-container {
+  display: grid;
+  grid-template-columns: 19vw 60vw 19vw;
+  justify-content: space-around;
+  overflow: auto;
+  .sidebar {
+    width: 100%;
+
+    div > a {
+      text-align: center;
+      width: 60%;
+    }
+  }
+}
+
+.lang-select {
+  margin-top: 20px;
+  form {
+    display: grid;
+    grid-template-rows: 3vh;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+  }
+}
+
+h3 {
+  text-align: center;
+}
+
+h5.card-text {
+  white-space: pre-line;
+}

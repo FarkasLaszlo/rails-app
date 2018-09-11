@@ -1,16 +1,16 @@
-<h1>Edit blog</h1>
-<%= form_for @comment, url: blog_comment_path do |form| %>
+<h1><%= translate_text "Edit comment"%></h1>
+<%= form_for @comment, url: blog_comment_path(blog_id: params[:blog_id], id: params[:comment_id]) do |form| %>
   <%= render "layouts/errors", locals: @comment %>
   <p>
-  <%= form.label :content %><br>
+  <%= form.label :content, translate_text("Content") %><br>
   <%= form.text_area(:content, {:class => "form-control"}) %>
   </p>
 
   <p>
-  <%= form.submit("Submit changes", {:class => "btn btn-primary"}) %>
+  <%= form.submit(translate_text("Submit changes"), {:class => "btn btn-primary"}) %>
   </p>
 
 <% end %>
 
-<%= link_to 'Back', "javascript:history.back()" %>
+<%= link_to translate_text('Back'), blog_path(id: params[:blog_id]), class: "btn btn-secondary" %>
 

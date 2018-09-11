@@ -1,14 +1,12 @@
 // Place all the styles related to the Blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.container {
-  h1 {
-    text-align: center;
-  }
+h1 {
+  text-align: center;
 }
 
 .blogs {
-  height: 82vh;
+  height: 81vh;
   overflow: auto;
 }
 
@@ -22,3 +20,64 @@
   }
 }
 
+.checkbox-container {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+
+  .styled-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    transition: all 0.15s ease-out 0s;
+    background: #eeeeee;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+
+    &:hover {
+      background: #0066ff;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+
+    &:checked:before {
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      content: '✓';
+      display: inline-block;
+      font-size: 26.66667px;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    &:checked {
+      background: #0066ff;
+    }
+  }
+  input[type="radio"].styled-checkbox {
+    border-radius: 50%;
+  }
+}
+
+.checkboxes {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}

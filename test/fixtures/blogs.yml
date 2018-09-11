@@ -2,14 +2,12 @@
 
 one:
   title: MyString
-  publication_date: MyString
   content: MyText
-  author: MyString
+  user_id: 2
   category: 1
 
 two:
   title: MyString
-  publication_date: MyString
   content: MyText
-  author: MyString
+  user_id: 1
   category: 1

@@ -1,0 +1,6 @@
+---
+people:
+- !ruby/object:Person
+  name: Bob
+- !ruby/object:Person
+  name: John

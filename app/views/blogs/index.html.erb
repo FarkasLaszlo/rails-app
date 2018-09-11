@@ -1,19 +1,27 @@
-<h1>Blogs</h1>
-<% if current_user %>
-  <%= link_to "Write a new blog", new_blog_path, class: "btn btn-primary new-blog" %>
+<h3 class="notice alert-success"><%= translate_text notice if notice %></h3>
+<h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
+<h1><%= translate_text "Posts" %></h1>
+<% unless user_has_right_to_write %>
+  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %><%= link_to translate_text('login'), login_path, class: "login-link btn btn-secondary" %><%= translate_text "or" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
+<% else %>
+  <%= link_to translate_text("Write a new post"), new_blog_path, class: "btn btn-primary" %>
 <% end %>
 <div class="blogs">
   <% @blogs.each do |blog| %>
     <div class="card text-white border-dark bg-info mb-3">
       <div class="card-header">
-        <h5 class="card-title">Title: <%= blog.title %></h5>
-        <h6 class="card-subtitle">Written by <%= blog_author(blog) %></h6>
+        <h5 class="card-title"><%= translate_text "Title" %>: <%= blog.title %></h5>
+        <h6 class="card-subtitle"><%= translate_text "Written by" %> <%= blog.user&.name || "Deleted user" %></h6>
       </div>
       <div class="card-body">
-        <p class="card-text">Content: <%= blog_content(blog) %></p>
-        <p class="card-text">Category: <%= blog.category %></p>
+        <p class="card-text"><%= translate_text "Content" %>: <%= blog_content(blog) %></p>
+        <p class="card-text"><%= translate_text "Categories" %>:
+          <% blog.categories.each do |category| %>
+            <span class="badge badge-pill badge-light"><%= translate_text category.name %></span>
+          <% end %>
+        </p>
       </div>
-      <div class="card-footer"><%= blog.publication_date %><%= link_to "Read this article", blog_path(blog), class: "btn btn-success" %></div>
+      <div class="card-footer"><%= creation_time_of blog %><%= link_to translate_text("Read this article"), blog_path(blog), class: "btn btn-success" %></div>
     </div>
   <% end %>
 </div>

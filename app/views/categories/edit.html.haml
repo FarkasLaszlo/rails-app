@@ -1,0 +1,6 @@
+%h1= translate_text("Editing category")
+
+= render 'form'
+
+= link_to translate_text('Show'), @category, class: "btn btn-primary"
+= link_to translate_text('Back'), categories_path, class: "btn btn-secondary"

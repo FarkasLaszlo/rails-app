@@ -1,5 +1,5 @@
 <% if locals.errors.any? %>
-  <% locals.errors.full_messages.each do |message| %>
-    <li class="alert alert-danger"><%= message %></li>
+  <% locals.errors.details.keys.each do |attribute| %>
+    <li class="alert alert-danger"><%= locals.errors.full_messages_for(attribute).first %></li>
   <% end %>
 <% end %>

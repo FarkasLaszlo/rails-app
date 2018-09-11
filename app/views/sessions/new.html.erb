@@ -1,24 +1,26 @@
-<h1>Log in</h1>
+<h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
+
+<h1><%= translate_text "Login" %></h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
 
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password %>
+  <%= f.label :password, translate_text("Password") %>
   <%= f.password_field :password, class: 'form-control' %>
 
   <div class="custom-control custom-checkbox my-1 mr-sm-2">
     <input name="session[remember_me]" type="hidden" value="0">
     <input type="checkbox" class="custom-control-input" value="1" name="session[remember_me]" id="session_remember_me">
-    <label class="custom-control-label" for="session_remember_me">Remember me on this computer</label>
+    <label class="custom-control-label" for="session_remember_me"><%= translate_text "Remember me on this computer" %></label>
   </div>
 
   <br>
-  <%= f.submit "Log in", class: "btn btn-primary" %>
+  <%= f.submit translate_text("Login"), class: "btn btn-primary" %>
 <% end %>
 
 <div class="nav" style="margin-top: 5px;">
-<%= link_to 'Back', "javascript:history.back()", class: "btn btn-secondary" %>
-<%= link_to "New User? Sign up now!", registration_path, class: "btn btn-success" %>
+<%= link_to translate_text('Back'), "javascript:history.back()", class: "btn btn-secondary" %>
+<%= link_to translate_text("New User? Sign up now") + "!", registration_path, class: "btn btn-success" %>
 </div>

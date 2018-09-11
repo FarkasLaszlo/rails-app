@@ -4,7 +4,7 @@
 
 .show-user {
   .card {
-    width: 25%;
+    width: 40%;
     .card-body:nth-child(3) {
       display: flex;
       * {
@@ -14,7 +14,7 @@
   }
 }
 
-.preview > div > img {
+.preview > img, .preview > .card-img-top {
   width: 250px;
 }
 
@@ -64,3 +64,23 @@ a {
 li {
   list-style: none;
 }
+
+input:invalid+.validity:after {
+
+  content: 'x';
+  padding-left: 5px;
+  color: #8b0000;
+}
+
+input:valid+.validity:after {
+  content: '✓';
+  padding-left: 5px;
+  color: #009000;
+}
+
+.form-field {
+  display: grid;
+  grid-template-columns: auto 10px;
+  align-items: center;
+}
+

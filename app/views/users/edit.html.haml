@@ -1,34 +1,31 @@
-= form_for @user do |form|
+= form_for @user, url: update_user_path(@user) do |form|
   = render "layouts/errors", locals: @user
-  %p
-    = form.label :name
-    %br
-    = form.text_field :name, class: "form-control"
+  = form.label :name
+  %p{:class=>"form-field"}
+    = form.text_field :name, { class: "form-control", pattern: "([A-Z0-9a-z]+(\s[A-Za-z0-9]+)*){5,20}", required: true }
+    %span{:class=>"validity"}
 
-  %p
-    = form.label :email
-    %br
-    = form.text_field :email, class: "form-control"
+  = form.label :email
+  %p{:class=>"form-field"}
+    = form.text_field :email, class: "form-control email"
+    %span{:class=>"validity"}
+
+  - if current_user.admin? && current_user != @user
+    %p Select a level
+    %div{:class=>"checkboxes"}
+      - user_levels.each do |(level, index)|
+        %div{:class=>"checkbox-container"}
+          %input{ :class=>"styled-checkbox", :id=>"user_level", :type=>"radio", :name=>"user[level]", :value=>"#{level}", "data-checked"=>"#{@user.level.to_s == level.to_s}" }
+          %span= level
 
   %div{:class=>"form-group"}
-    = form.label :avatar, class: "file-upload btn btn-primary"
+    = form.label :avatar, translate_text("Click here to upload a profile picture"), class: "file-upload btn btn-primary"
     %br
     = form.file_field :avatar, class: "file-upload"
   %div{:class=>"preview"}
-    %p No files currently selected for the upload
-
-
-  %p
-    = form.label :password
-    %br
-    = form.password_field :password, class: "form-control"
-
-  %p
-    = form.label :password_confirmation
-    %br
-    = form.password_field :password_confirmation, class: "form-control"
+    = user_avatar(@user)
 
   %p
     = form.submit value: "Update user", class: "btn btn-primary"
 
-= link_to 'Back', "javascript:history.back()"
+= link_to 'Back', "javascript:history.back()", class: "btn btn-secondary"

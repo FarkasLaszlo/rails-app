@@ -1,39 +1,47 @@
-<h1> Create User </h1>
+<h1><%= translate_text("Registration Page") %> </h1>
 <%= form_with scope: :user, url: registration_path , local: true do |form| %>
   <%= render "layouts/errors", locals: @user %>
-  <p>
-  <%= form.label :name %><br>
-  <%= form.text_field(:name, {:class => "form-control"}) %>
+  <%= form.label :name, translate_text("Name") %><br>
+  <p class="form-field">
+  <%= form.text_field(:name, { class: "form-control", pattern: "([A-Z0-9a-z]+(\s[A-Za-z0-9]+)*){5,20}", required: true }) %>
+    <span class="validity"></span>
   </p>
 
-  <p>
-  <%= form.label :email %><br>
-  <%= form.text_field(:email, {:class => "form-control"}) %>
+  <%= form.label :email, translate_text("E-mail address") %><br>
+  <p class="form-field">
+  <%= form.text_field(:email, { class: "form-control email", required: true }) %>
+    <span class="validity"></span>
   </p>
 
   <div class="form-group">
-    <%= form.label :avatar, class: "file-upload btn btn-primary" %>
+    <%= form.label :avatar, translate_text("Click here to upload a profile picture"), class: "file-upload btn btn-primary" %>
     <%= form.file_field :avatar, :class => "file-upload" %>
   </div>
 
   <div class="preview">
-    <p>No files currently selected for the upload</p>
+    <p><%= translate_text "No files currently selected for the upload" %></p>
   </div>
 
-  <p>
-  <%= form.label :password %><br>
-  <%= form.password_field(:password, {:class => "form-control"}) %>
+  <button type="button" class="btn btn-success password-show"><%= translate_text "Toggle password visibility" %></button>
+  <div>
+    <%= form.label :password, translate_text("Password") %><br>
+  </div>
+  <p class="form-field">
+    <%= form.password_field(:password, { class: "form-control password", pattern: "(?=.*[_?%+|@&#])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}", required: true }) %>
+    <span class="validity"></span>
   </p>
 
-  <p>
-  <%= form.label :password_confirmation %><br>
-  <%= form.password_field(:password_confirmation, {:class => "form-control"}) %>
+  <%= form.label :password_confirmation, translate_text("Password confirmation") %><br>
+  <p class="form-field">
+    <%= form.password_field(:password_confirmation, { class: "form-control password-confirmation", required: true }) %>
+    <span class="validity"></span>
   </p>
 
+
   <p>
-  <%= form.submit("Create an account", {:class => "btn btn-primary"}) %>
+  <%= form.submit(translate_text("Create an account"), { class: "btn btn-primary" }) %>
   </p>
 
 <% end %>
 
-<%= link_to 'Back', "javascript:history.back()" %>
+<%= link_to translate_text('Back'), "javascript:history.back()", class: "btn btn-secondary" %>

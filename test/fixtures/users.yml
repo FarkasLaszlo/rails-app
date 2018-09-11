@@ -1,7 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: MyString
+  serial: 1
+  email: user1@gmail.com
+  password_digest: $2a$10$It9oUo3axikEXdzkwAjIvuNUOBykoidNEtEoGl/GMFbZ7bjjgtF82
 
 two:
   name: MyString
+  serial: 2

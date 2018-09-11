@@ -1,0 +1,8 @@
+<div class="checkboxes">
+<% categories.each do |category| %>
+  <div class="checkbox-container">
+    <input class="styled-checkbox" id="blog_category_ids" type="checkbox" name="blog[category_ids][]" value="<%= category.id %>" data-checked=<%= locals[:blog].categories.include?(category) %>>
+    <span><%= translate_text category.name %></span>
+  </div>
+<% end %>
+</div>

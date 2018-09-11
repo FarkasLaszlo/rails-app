@@ -30,16 +30,53 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  faker:
+    dr_who:
+      quotes: [
+      "Everybody knows that everybody dies. But not every day. Not today. Some days are special. Some days are so, so blessed. Some days, nobody dies at all. Now and then, every once in a very long while, every day in a million days, when the wind stands fair and the Doctor comes to call, everybody lives.",
+      "This is one corner… of one country, in one continent, on one planet that’s a corner of a galaxy that’s a corner of a universe that is forever growing and shrinking and creating and destroying and never remaining the same for a single millisecond. And there is so much, so much to see.",
+      "There's something that doesn't make sense. Let's go and poke it with a stick.",
+      "Everybody knows that everybody dies and nobody knows it like the Doctor.",
+      "Amy Pond: I thought... well, I started to think you were just a madman with a box.\n The Doctor: Amy Pond, there's something you better understand about me, cause it's important and one day your life may depend on it. I am definitely a madman with a box.",
+      "He's like fire and ice and rage. He's like the night, and the storm in the heart of the sun. He's ancient and forever. He burns at the center of time and he can see the turn of the universe. And... he's wonderful.",
+      "The Doctor: You know when grown-ups tell you everything's going to be fine, but you really think they're lying to make you feel better?\n Amelia: Yeah...\n The Doctor: Everything's going to be fine.",
+      "Fourth Doctor: You know, the very powerful and the very stupid have one thing in common: they don't alter their views to fit the facts; they alter the facts to fit their views.",
+      "Hitler: Thank you, whoever you are. I think you just saved my life.\n The Doctor: Believe me... It was an accident.",
+      "Young Reinette: Monsieur, be careful!\n The Doctor: It's just a nightmare, Reinette, don't worry, everyone has nightmares. Even monsters under the bed have nightmares!\n Young Reinette: What do monsters have nightmares about? \nThe Doctor: Me!",
+      "Lots of planets have a north!", "This is my timey-wimey detector. It goes 'ding' when there's stuff.",
+      "Bananas are good.", "I wear a fez now. Fezzes are cool.", "Can you hold? I have to eat a biscuit.",
+      "If we're gonna die, let's die looking like a Peruvian folk band.",
+      "You want weapons? We're in a library! Books! The best weapons in the world!",
+      "Come on, Rory! It isn't rocket science, it's just quantum physics!",
+      "We're all stories in the end. Just make it a good one, eh?",
+      "Big flashy things have my name written all over them. Well... not yet, give me time and a crayon.",
+      "You don't want to take over the universe. You wouldn't know what to do with it beyond shout at it.",
+      "A straight line may be the shortest distance between two points, but it is by no means the most interesting.",
+      "See the bowtie? I wear it and I don't care. That's why it's cool.",
+      "I saw the Fall of Troy! World War Five! I was pushing boxes at the Boston Tea Party!\n Now I'm gonna die in a dungeon... in Cardiff!",
+      "Bunk beds are cool, a bed with a ladder, you can't beat that!",
+      "The universe is big. It’s vast and complicated and ridiculous. And sometimes, very rarely, impossible things just happen and we call them miracles.",
+      "Do what I do. Hold tight and pretend it’s a plan!",
+      "900 years of time and space, and I’ve never been slapped by someone’s mother.",
+      "Never ignore coincidence. Unless, of course, you’re busy. In which case, always ignore coincidence.",
+      "The assembled hordes of Genghis Khan couldn't get through that door, and, believe me, they've tried.",
+      "Your wish is my command. But be careful what you wish for.",
+      "Aw, I wanted to be ginger! I've never been ginger!",
+      "Crossing into established events is strictly forbidden. Except for cheap tricks.",
+      "I have lived a long life, and I have seen a few things.\n I walked away from the Last Great Time War. I marked the passing of the Time Lords. I saw the birth of the universe and I watched as time ran out, moment by moment, until nothing remained; no time, no space. Just me.\n I walked in universes where the laws of physics were devised by the mind of a madman.\n I watched universes freeze and creations burn. I have seen things you wouldn't believe, I have lost things you will never understand. And I know things, secrets that must never be told, knowledge that must never be spoken",
+      ]
   activerecord:
     attributes:
       user:
         email: "E-mail address"
+      blog:
+        category_ids: " "
     errors:
       models:
         user:
           attributes:
             password:
-              invalid: "is not valid, it has to contain at least 8 characters, at least one uppercase letter, one lowercase letter, and one number"
+              invalid: "is not valid, it has to contain at least 8 characters, at least one uppercase letter, one lowercase letter, and one number, and one of these: _?%+|@&#"
             email:
               invalid: "is not valid. Please use an existing e-mail address"
               blank: "can't be blank"

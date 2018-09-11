@@ -1,26 +1,22 @@
-<h1>Edit blog</h1>
+<h1><%= translate_text "Edit post" %></h1>
 <%= form_for @blog do |form| %>
   <%= render "layouts/errors", locals: @blog %>
   <p>
-  <%= form.label :title %><br>
+  <%= form.label :title, translate_text("Title") %><br>
   <%= form.text_field(:title, {:class => "form-control"}) %>
   </p>
 
   <p>
-  <%= form.label :content %><br>
-  <%= form.text_area(:content, {:class => "form-control"}) %>
+  <%= form.label :content, translate_text("Content") %><br>
+  <%= form.text_area(:content, {:class => "form-control", rows: "15"}) %>
   </p>
+  <%= render "/categories/select.html.erb", locals: { blog: @blog } %>
 
   <p>
-  <%= form.label :category %><br>
-  <%= form.text_field(:category, {:class => "form-control"}) %>
-  </p>
-
-  <p>
-  <%= form.submit("Submit changes", {:class => "btn btn-primary"}) %>
+  <%= form.submit(translate_text("Submit changes"), {:class => "btn btn-primary"}) %>
   </p>
 
 <% end %>
 
-<%= link_to 'Back', "javascript:history.back()" %>
+<%= link_to translate_text('Back'), blog_path(@blog) %>
 

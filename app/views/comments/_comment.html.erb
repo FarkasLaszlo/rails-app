@@ -1,0 +1,16 @@
+<div class="card text-white bg-dark mb-3 comment">
+  <div class="card-header">
+    <h4 class="card-title"><%= comment.user&.name || "Deleted user" %></h4>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= comment.content %></p>
+  </div>
+  <div class="card-footer">
+    <%= creation_time_of comment %>
+    <%= link_to translate_text("Delete"), blog_comment_path(@blog, comment), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+    <%= link_to translate_text("Edit comment"), edit_comment_path(comment, blog_id: @blog.id), class: "btn btn-primary" %>
+    <%= link_to translate_text('Reply'), new_comment_path(comment, blog_id: @blog.id), class: "btn btn-success" %>
+    <hr>
+    <%= comments_of comment %>
+  </div>
+</div>

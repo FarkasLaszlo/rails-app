@@ -1,0 +1,22 @@
+<div class="sidebar">
+  <h4><span class="badge badge-primary"> <%= translate_text "Categories" %>: </span></h4>
+  <%= render "/categories/categories.html.erb" %>
+  <% if current_user %>
+    <%= link_to translate_text("My posts"), blogs_path(search: { user: current_user && current_user.name, category: params[:search] && params[:search][:category] }), class: "btn btn-success" %>
+  <% end %>
+  <hr>
+  <h3><%= translate_text("Advanced search") %></h3>
+  <form accept-charset="UTF-8" action="/blogs" method="get">
+    <input name="utf8" type="hidden" value="&#x2713;" />
+    <label for="search[title]"><%=translate_text "Title" %></label>
+    <input class="form-control" id="search[title]" name="search[title]" type="text" value="<%= params[:search][:title] if params[:search] %>">
+    <label for="search[content]"><%= translate_text "Content" %></label>
+    <input class="form-control" for="search[content]" name="search[content]" type="text" value="<%= params[:search][:content] if params[:search] %>">
+    <label for="search[category]"><%= translate_text "Category" %></label>
+    <input class="form-control" id="search[category]" name="search[category]" type="text" value="<%= params[:search][:category] if params[:search] %>">
+    <label for="search[user]"><%= translate_text "Writer" %></label>
+    <input class="form-control" id="search[user]" name="search[user]" type="text" value="<%= params[:search][:user] if params[:search] %>">
+    <input class="btn btn-success" type="submit" value=<%= translate_text "Search" %>>
+  </form>
+</div>
+

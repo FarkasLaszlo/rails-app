@@ -1,0 +1,6 @@
+<div><%= link_to translate_text("All"), blogs_path, class: "btn btn-info" %></div>
+<% categories.each do |category| %>
+  <div>
+    <%= link_to translate_text(category.name), blogs_path(search: { category: category.name, user: params[:search] && params[:search][:user] }), class: "btn btn-info" %>
+  </div>
+<% end %>

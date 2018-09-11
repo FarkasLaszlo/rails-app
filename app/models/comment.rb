@@ -1,6 +1,11 @@
 class Comment < ApplicationRecord
-  belongs_to :blog
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
+  has_many :comments, as: :commentable, dependent: :destroy
   validates :content, presence: true
-  validates :author, presence: true
-  validates :date, presence: true
+
+  def comment
+    @parent ||= Comment.find_by(id: commentable_id) if commentable_type == 'Comment'
+  end
+
 end

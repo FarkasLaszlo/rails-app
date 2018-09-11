@@ -4,9 +4,9 @@
     <% @keys.each do |key| %>
       <th>
         <% if key == "created_at" %>
-          Registration date
+          <%= translate_text "Registration time" %>
         <% else %>
-          <%= key.capitalize %>
+          <%= translate_text key.capitalize %>
         <% end %>
       </th>
     <% end %>
@@ -19,7 +19,7 @@
       <% @keys.each do |key| %>
         <td class="user-row align-middle">
           <% if key == "created_at" %>
-            <%= registration_date(user) %>
+            <%= creation_time_of user %>
           <% elsif key == "avatar" %>
             <%= user_avatar(user) %>
           <% else %>
@@ -27,11 +27,14 @@
           <% end%>
         </td>
       <% end %>
-      <td class="align-middle"><%= link_to "Show", user_path(user), class: "btn btn-primary" %></td>
-      <td class="align-middle"><%= link_to "Edit", edit_user_path(user), class: "btn btn-primary" %></td>
-      <td class="align-middle"><%= button_to 'Delete', user_path(user), method: :delete, class: "btn btn-danger" %></td>
+      <td class="align-middle"><%= link_to translate_text("Show"), user_path(user), class: "btn btn-primary" %></td>
+      <td class="align-middle"><%= link_to translate_text("Edit"), edit_user_path(user), class: "btn btn-primary" %></td>
+      <% if !current_user.admin? || current_user != user %>
+        <td class="align-middle"><%= link_to translate_text('Delete'), user_path(user), method: :delete, class: "btn btn-danger" %></td>
+      <% else %>
+        <td></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
-<%= link_to 'Back', root_path %>
-<%= link_to 'New', new_user_path %>
+<%= link_to translate_text('Back'), root_path, class: "btn btn-secondary" %>
