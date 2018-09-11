@@ -1,6 +1,6 @@
 <h1><%= translate_text "New post" %></h1>
-<%= form_with scope: :blog, url: blogs_path , local: true do |form| %>
-  <%= render "layouts/errors", locals: @blog %>
+<%= form_with scope: :post, url: posts_path , local: true do |form| %>
+  <%= render "layouts/errors", locals: @post %>
 
   <p>
   <%= form.label :title, translate_text("Title") %><br>
@@ -12,7 +12,7 @@
   <%= form.text_area(:content, {:class => "form-control", rows: "15"}) %>
   </p>
   <p><%= translate_text("Categories") %>:</p>
-  <%= render "/categories/select.html.erb", locals: { blog: @blog } %>
+  <%= render "/categories/select.html.erb", locals: { post: @post } %>
   <hr>
   <p>
   <%= form.submit(translate_text("Submit your writing"), {:class => "btn btn-primary"}) %>

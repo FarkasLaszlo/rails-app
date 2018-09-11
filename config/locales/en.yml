@@ -69,7 +69,7 @@ en:
     attributes:
       user:
         email: "E-mail address"
-      blog:
+      post:
         category_ids: " "
     errors:
       models:

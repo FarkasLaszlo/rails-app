@@ -5,7 +5,7 @@
 <% unless user_has_right_to_write %>
   <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %> <%= link_to translate_text('login'), login_path, class: "login-link btn btn-warning" %> <%= translate_text "or" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
 <% else %>
-  <%= link_to translate_text("Write a new post"), new_blog_path, class: "btn btn-primary" %>
+  <%= link_to translate_text("Write a new post"), new_post_path, class: "btn btn-primary" %>
 <% end %>
 <hr>
 <div class="card text-black bg-warning mb-3">

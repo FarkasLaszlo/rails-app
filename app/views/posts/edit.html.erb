@@ -1,6 +1,6 @@
 <h1><%= translate_text "Edit post" %></h1>
-<%= form_for @blog do |form| %>
-  <%= render "layouts/errors", locals: @blog %>
+<%= form_for @post do |form| %>
+  <%= render "layouts/errors", locals: @post %>
   <p>
   <%= form.label :title, translate_text("Title") %><br>
   <%= form.text_field(:title, {:class => "form-control"}) %>
@@ -10,7 +10,7 @@
   <%= form.label :content, translate_text("Content") %><br>
   <%= form.text_area(:content, {:class => "form-control", rows: "15"}) %>
   </p>
-  <%= render "/categories/select.html.erb", locals: { blog: @blog } %>
+  <%= render "/categories/select.html.erb", locals: { post: @post } %>
 
   <p>
   <%= form.submit(translate_text("Submit changes"), {:class => "btn btn-primary"}) %>
@@ -18,5 +18,5 @@
 
 <% end %>
 
-<%= link_to translate_text('Back'), blog_path(@blog) %>
+<%= link_to translate_text('Back'), post_path(@post) %>
 

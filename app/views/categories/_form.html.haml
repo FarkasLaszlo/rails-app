@@ -2,6 +2,6 @@
   = render "layouts/errors", locals: @category
   .field
     = f.label :name, translate_text("Name")
-    = f.text_field :name, value: translate_text(@category.name), class: "form-control"
+    = f.text_field :name, value: @category.name, class: "form-control"
   .actions
     = f.submit translate_text('Save'), class: "btn btn-primary"

@@ -1,24 +1,24 @@
-class BlogsController < ApplicationController
-  include BlogsHelper
+class PostsController < ApplicationController
+  include PostsHelper
 
   before_action :check_user, except: [:index, :show]
-  before_action :get_blog, only: [:edit, :update, :destroy, :show]
+  before_action :get_post, only: [:edit, :update, :destroy, :show]
   before_action :has_right_to_write, only: [:new, :create]
   before_action :has_access, only: [:edit, :update, :destroy]
 
   def index
     @keys = User.new.attributes.keys - ["created_at", "updated_at", "id"]
     @categories = Category.all
-    @blogs = Blog.filter_by params[:search]
+    @posts = Post.filter_by params[:search]
   end
 
   def new
-    @blog = Blog.new
+    @post = Post.new
   end
 
   def create
-    @blog = Blog.new(blog_params.merge(user_id: current_user.id))
-    if @blog.save
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+    if @post.save
       redirect_to action: 'index'
       flash[:notice] = "Successfully created"
     else
@@ -27,11 +27,11 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @comments = @blog.comments.includes(:user).order("created_at DESC")
+    @comments = @post.comments.includes(:user).where("comment_id IS NULL").order("created_at DESC")
   end
 
   def update
-    if @blog.update(blog_params)
+    if @post.update(post_params)
       redirect_to action: 'show'
       flash[:notice] = "Successfully updated"
     else
@@ -40,7 +40,7 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog.destroy!
+    @post.destroy!
     flash[:notice] = "Successfully destroyed"
     redirect_to action: 'index'
   end
@@ -49,16 +49,16 @@ class BlogsController < ApplicationController
 
   def has_right_to_write
     unless @user.vip? || @user.admin?
-      redirect_to blogs_path
+      redirect_to posts_path
     end
   end
 
-  def blog_params
-    params.require(:blog).permit!
+  def post_params
+    params.require(:post).permit!
   end
 
-  def get_blog
-    @blog = Blog.find(params[:id])
+  def get_post
+    @post = Post.find(params[:id])
   end
 
   def check_user
@@ -70,8 +70,8 @@ class BlogsController < ApplicationController
   end
 
   def has_access
-    unless @user == @blog.user || @user.admin?
-      redirect_to blogs_path
+    unless @user == @post.user || @user.admin?
+      redirect_to posts_path
     end
   end
 end

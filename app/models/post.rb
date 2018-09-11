@@ -1,12 +1,12 @@
-class Blog < ApplicationRecord
+class Post < ApplicationRecord
   SEARCH_KEYS = {
     category: "categories.name",
     user: "users.name",
-    title: "blogs.title",
-    content: "blogs.content"
+    title: "posts.title",
+    content: "posts.content"
   }
 
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :user
   has_and_belongs_to_many :categories
   validates :title, presence: true, length: { minimum: 5 }
@@ -14,12 +14,12 @@ class Blog < ApplicationRecord
   validates :category_ids, presence: { message: "At least one category must be selected" }
 
   def self.filter_by search_params
-    joins(:categories, :user).where(Blog.filter_query search_params).order("created_at DESC").distinct
+    joins(:categories, :user).where(Post.filter_query search_params).order("created_at DESC").distinct
   end
 
   def self.filter_query search_params
     values = []
-    values.unshift(query_string_from(search_params, values) || "blogs.id IS NOT NULL")
+    values.unshift(query_string_from(search_params, values) || "posts.id IS NOT NULL")
     values
   end
 
