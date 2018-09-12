@@ -3,7 +3,7 @@
   <tr>
     <% @keys.each do |key| %>
       <th>
-        <% if key == "created_at" %>
+        <% if key == "created_at" # TODO FL inkább egyesével kiírni, vagy I18n-nel okosba megoldani, hogy a User model #created_at attribútumát regisztráció idejének fordítsa %>
           <%= translate_text "Registration time" %>
         <% else %>
           <%= translate_text key.capitalize %>
@@ -16,7 +16,7 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <% @keys.each do |key| %>
+      <% @keys.each do |key| # TODO FL átláthatóbb, ha egyesével ki van írva - ezt a megoldást dinamikus adatstruktúra esetén alkalmazzuk inkább %>
         <td class="user-row align-middle">
           <% if key == "created_at" %>
             <%= creation_time_of user %>
@@ -29,7 +29,7 @@
       <% end %>
       <td class="align-middle"><%= link_to translate_text("Show"), user_path(user), class: "btn btn-primary" %></td>
       <td class="align-middle"><%= link_to translate_text("Edit"), edit_user_path(user), class: "btn btn-primary" %></td>
-      <% if !current_user.admin? || current_user != user %>
+      <% if !current_user.admin? || current_user != user # TODO FL itt vagy nem értem a feltételt, vagy nem jó %>
         <td class="align-middle"><%= link_to translate_text('Delete'), user_path(user), method: :delete, class: "btn btn-danger" %></td>
       <% else %>
         <td></td>

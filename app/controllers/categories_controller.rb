@@ -12,9 +12,9 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    respond_to do |format|
+    respond_to do |format| # TODO FL erre csak akkor van szükség, ha többféleképpen is tud válaszolni az action
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to @category, notice: 'Category was successfully created.' } # TODO FL I18n?
       else
         format.html { render :new }
       end

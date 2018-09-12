@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   end
 
   def get_comment
-    @comment = Comment.find(params[:id] || params[:comment_id])
+    @comment = Comment.find(params[:id] || params[:comment_id]) # TODO FL ?
   end
 
   def check_user

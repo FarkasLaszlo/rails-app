@@ -8,7 +8,7 @@
     %div{:class=>"card-body"}
       = link_to translate_text("Edit"), edit_user_path(@user), class: "btn btn-primary"
       = link_to translate_text("Edit password"), edit_password_user_path(@user), class: "btn btn-primary"
-      - if current_user.admin? && current_user != @user
+      - if current_user.admin? && current_user != @user # TODO FL akkor önmagát senki nem törölheti?
         = link_to translate_text('Delete'), user_path, method: :delete, class: "btn btn-danger"
       = link_to translate_text('Back'), users_path, class: "btn btn-secondary"
     %div{:class=>"card-footer"}

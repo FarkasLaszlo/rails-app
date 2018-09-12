@@ -1,4 +1,4 @@
-hu:
+hu: # TODO FL kezeljük hash-ként -> edit_password: ...; logikus alegységekre osztás
   Edit: Szerkesztés
   Edit password: Jelszó megváltoztatása
   Delete: Törlés

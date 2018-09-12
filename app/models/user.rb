@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_create :set_serial
-  before_create :set_default_level
+  before_create :set_default_level # TODO FL default érték adása migrálásnál
   enum level: [:user, :vip, :admin]
 
   mount_uploader :avatar, AvatarUploader
@@ -12,8 +12,8 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A^([a-z0-9-]+(\.[a-z0-9-]+)*)@(([a-z\-0-9]+\.)+[a-z]{2,})\z/ }, uniqueness: true
   has_secure_password
   validates :password, confirmation: true, presence: true, format: { with: /\A(?=.*[_?%+|@&#])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}\z/ }, if: :password_validation_required?
-  validates :password_confirmation, presence: true, if: :password_validation_required?
-  validates :level, presence: true, on: :update, unless: :password_change?
+  validates :password_confirmation, presence: true, if: :password_validation_required? # TODO FL elfelejtett jelszó?
+  validates :level, presence: true, on: :update, unless: :password_change? # TODO miért csak akkor, ha nem password_change?
   validate :current_password_is_correct, if: :password_change?
 
   def self.digest(string)
@@ -31,15 +31,15 @@ class User < ApplicationRecord
   end
 
   def password_validation_required?
-    password_change || password_digest_changed?
+    password_change || password_digest_changed? # TODO FL ha már van password_change? metódus akkor pofásabb lenne itt is azt hasznlni
   end
 
-  def password_change?
+  def password_change? # TODO FL vagy alias / alias_method
     password_change
   end
 
-  def current_password_is_correct
-    user = User.find_by serial: serial
+  def current_password_is_correct # TODO a validate custom metódusokat privátként szoktuk kezelni
+    user = User.find_by serial: serial # TODO erre miért van szükség?
     unless user.authenticate(current_password)
       errors.add :current_password, "field can't be empty"
     end

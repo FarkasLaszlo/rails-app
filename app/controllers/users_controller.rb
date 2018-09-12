@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy!
-    @user.remove_avatar!
+    @user.remove_avatar! # TODO FL model feladatnak tűnik
     flash[:notice] = "Successfully deleted"
     redirect_to action: 'index'
   end

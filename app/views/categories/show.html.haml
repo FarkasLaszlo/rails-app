@@ -4,7 +4,7 @@
   %div{:class=>"card-header"}
     %p{:class=>"card-title"}= translate_text("Name") + ":"
   %div{:class=>"card-body"}
-    %p{:class=>"card-text"}= translate_text @category.name
+    %p{:class=>"card-text"}= translate_text @category.name # TODO FL ???
 
 = link_to translate_text('Edit'), edit_category_path(@category), class: "btn btn-primary"
 = link_to translate_text('Back'), categories_path, class: "btn btn-secondary"

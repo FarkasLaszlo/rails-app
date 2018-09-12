@@ -7,8 +7,8 @@ class PostsController < ApplicationController
   before_action :has_access, only: [:edit, :update, :destroy]
 
   def index
-    @keys = User.new.attributes.keys - ["created_at", "updated_at", "id"]
-    @categories = Category.all
+    @keys = User.new.attributes.keys - ["created_at", "updated_at", "id"] # TODO FL ez kell még?
+    @categories = Category.all # TODO FL ez mihez kell?
     @posts = Post.filter_by params[:search]
   end
 
@@ -28,11 +28,15 @@ class PostsController < ApplicationController
 
   def show
     @comments = @post.comments.includes(:user).where("comment_id IS NULL").order("created_at DESC")
+    # TODO FL
+    #   where(comment_id: nil) - valamint ez eléggé scope-gyanús: csinálnék egy külön kapcsolatot rá (pl. has_many :own_comments, class_name: ...)
+    #   oreder(created_at: :desc) - ez direkt nem default_scope ?
+    #   és ha már ennyi minden kikerült a modelbe, a többi már akár a view-ban is elfér (persze nem feltétlenül)
   end
 
   def update
     if @post.update(post_params)
-      redirect_to action: 'show'
+      redirect_to action: 'show' # TODO FL direkt ez a sorrend (redirect_to, majd flash)?
       flash[:notice] = "Successfully updated"
     else
       render 'edit'

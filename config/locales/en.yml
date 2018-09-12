@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  faker:
+  faker: # TODO FL mesélj a faker-ről
     dr_who:
       quotes: [
       "Everybody knows that everybody dies. But not every day. Not today. Some days are special. Some days are so, so blessed. Some days, nobody dies at all. Now and then, every once in a very long while, every day in a million days, when the wind stands fair and the Doctor comes to call, everybody lives.",
@@ -65,7 +65,7 @@ en:
       "Crossing into established events is strictly forbidden. Except for cheap tricks.",
       "I have lived a long life, and I have seen a few things.\n I walked away from the Last Great Time War. I marked the passing of the Time Lords. I saw the birth of the universe and I watched as time ran out, moment by moment, until nothing remained; no time, no space. Just me.\n I walked in universes where the laws of physics were devised by the mind of a madman.\n I watched universes freeze and creations burn. I have seen things you wouldn't believe, I have lost things you will never understand. And I know things, secrets that must never be told, knowledge that must never be spoken",
       ]
-  activerecord:
+  activerecord: # TODO FL ebből hogyhogy nincs magyar?
     attributes:
       user:
         email: "E-mail address"

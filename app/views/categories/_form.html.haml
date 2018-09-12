@@ -1,7 +1,7 @@
 = form_for @category do |f|
-  = render "layouts/errors", locals: @category
+  = render "layouts/errors", locals: @category # TODO FL ez nem layout, inkább shared
   .field
-    = f.label :name, translate_text("Name")
-    = f.text_field :name, value: @category.name, class: "form-control"
+    = f.label :name, translate_text("Name") # TODO FL próbáltad második paraméter nélkül?
+    = f.text_field :name, value: @category.name, class: "form-control" # TODO FL minek a :name kulcs?
   .actions
-    = f.submit translate_text('Save'), class: "btn btn-primary"
+    = f.submit translate_text('Save'), class: "btn btn-primary" # TODO SZM I18n lehetőségek
