@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  #LIFE CYCLES
   before_create :set_serial
   before_create :set_default_level
+  after_destroy :remove_avatar!
+  
   enum level: [:user, :vip, :admin]
 
   mount_uploader :avatar, AvatarUploader
@@ -13,7 +16,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, confirmation: true, presence: true, format: { with: /\A(?=.*[_?%+|@&#])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}\z/ }, if: :password_validation_required?
   validates :password_confirmation, presence: true, if: :password_validation_required?
-  validates :level, presence: true, on: :update, unless: :password_change?
+  validates :level, presence: true, on: :update
   validate :current_password_is_correct, if: :password_change?
 
   def self.digest(string)
@@ -26,24 +29,11 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def set_default_level
-    self.level = :user
-  end
-
   def password_validation_required?
-    password_change || password_digest_changed?
+    password_change? || password_digest_changed?
   end
 
-  def password_change?
-    password_change
-  end
-
-  def current_password_is_correct
-    user = User.find_by serial: serial
-    unless user.authenticate(current_password)
-      errors.add :current_password, "field can't be empty"
-    end
-  end
+  alias_method :password_change?, :password_change
 
   def remember
     self.remember_token = User.new_token
@@ -63,6 +53,18 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_default_level
+    self.level = :user
+  end
+
+  def current_password_is_correct
+    user = User.find_by serial: serial
+    unless user.authenticate(current_password)
+      errors.add :current_password, "field can't be empty"
+    end
+  end
+
   def set_serial
     loop do
       self.serial = SecureRandom.uuid

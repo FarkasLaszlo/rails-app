@@ -1,8 +1,10 @@
 <h3 class="notice alert-success"><%= translate_text notice if notice %></h3>
 <h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
 <h1><%= translate_text "Posts" %></h1>
-<% unless user_has_right_to_write %>
-  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %><%= link_to translate_text('login'), login_path, class: "login-link btn btn-secondary" %><%= translate_text "or" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
+<% if !current_user %>
+  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %><%= link_to translate_text('login'), login_path, class: "login-link btn btn-warning" %></span></h3>
+<% elsif !user_has_right_to_write %>
+  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
 <% else %>
   <%= link_to translate_text("Write a new post"), new_post_path, class: "btn btn-primary" %>
 <% end %>
@@ -14,7 +16,7 @@
         <h6 class="card-subtitle"><%= translate_text "Written by" %> <%= post.user&.name || "Deleted user" %></h6>
       </div>
       <div class="card-body">
-        <p class="card-text"><%= translate_text "Content" %>: <%= post_content(post) %></p>
+        <p class="card-text"><%= translate_text "Content" %>: <%= truncated_content(post) %></p>
         <p class="card-text"><%= translate_text "Categories" %>:
           <% post.categories.each do |category| %>
             <span class="badge badge-pill badge-light"><%= translate_text category.name %></span>

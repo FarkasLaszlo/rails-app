@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :check_user, except: [:new, :create]
-  before_action :get_user, only: [:edit, :edit_password, :update_password, :update, :destroy, :show]
+  before_action :get_user, only: [:edit, :update, :destroy, :show]
+  before_action :get_current_user, only: [:edit_password, :update_password]
   before_action :has_access, only: [:edit, :edit_password, :update, :destroy]
 
   def index
@@ -20,14 +21,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy!
-    @user.remove_avatar!
     flash[:notice] = "Successfully deleted"
     redirect_to action: 'index'
   end
 
   def update
     if @user.update(user_params)
-      redirect_to action: 'show'
+      redirect_to @user
       flash[:notice] = "Successfully updated"
     else
       render 'edit'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def update_password
     @user.password_change = true
     if @user.update(user_params)
-      redirect_to action: 'show'
+      redirect_to @user
       flash[:notice] = "Successfully updated password"
     else
       render 'edit_password'
@@ -51,6 +51,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :current_password, :level)
+  end
+
+  def get_current_user
+    @user = current_user
   end
 
   def get_user

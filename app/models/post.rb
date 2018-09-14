@@ -6,30 +6,20 @@ class Post < ApplicationRecord
     content: "posts.content"
   }
 
+  #ASSOCIATIONS
   has_many :comments, dependent: :destroy
+  has_many :top_level_comments, -> { top_level }, class_name: "Comment"
   belongs_to :user
   has_and_belongs_to_many :categories
   validates :title, presence: true, length: { minimum: 5 }
   validates :content, presence: true
-  validates :category_ids, presence: { message: "At least one category must be selected" }
+  validates :categories, presence: true
+
+  default_scope { order(created_at: :desc) }
 
   def self.filter_by search_params
-    joins(:categories, :user).where(Post.filter_query search_params).order("created_at DESC").distinct
+    (values = []) && result = search_params && search_params.to_unsafe_h.inject([]) { |result_array, (key, value)| result_array << (value.present? && values << "%#{value}%" && " #{SEARCH_KEYS[key.to_sym]} LIKE ? " || nil) }.compact.join("AND")
+    result.present? && values.unshift(result) && joins(:categories, :user).where(values).distinct || where("true")
   end
 
-  def self.filter_query search_params
-    values = []
-    values.unshift(query_string_from(search_params, values) || "posts.id IS NOT NULL")
-    values
-  end
-
-  def self.create_query_from data, query_string, values
-    data.present? && values << "%#{data}%" && " #{query_string} LIKE ? " || nil
-  end
-
-  def self.query_string_from params_search, values
-    result = []
-    params_search && params_search.each { |key, value| result << create_query_from(value, SEARCH_KEYS[key.to_sym], values) } && result = result.compact.join("AND")
-    result.present? && result
-  end
 end

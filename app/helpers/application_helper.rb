@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def translate_text text
-    t(text, locale: cookies.permanent[:language] || "en", default: text)
+    t(text, locale: cookies.permanent[:language] || "en")
   end
 end

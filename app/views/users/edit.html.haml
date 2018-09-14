@@ -1,17 +1,17 @@
 = form_for @user, url: update_user_path(@user) do |form|
   = render "layouts/errors", locals: @user
-  = form.label :name
+  = form.label :name, translate_text("activerecord.attributes.user.name")
   %p{:class=>"form-field"}
     = form.text_field :name, { class: "form-control", pattern: "([A-Z0-9a-z]+(\s[A-Za-z0-9]+)*){5,20}", required: true }
     %span{:class=>"validity"}
 
-  = form.label :email
+  = form.label :email, translate_text("activerecord.attributes.user.email")
   %p{:class=>"form-field"}
     = form.text_field :email, class: "form-control email"
     %span{:class=>"validity"}
 
   - if current_user.admin? && current_user != @user
-    %p Select a level
+    %p= translate_text("forms.labels.level_select")
     %div{:class=>"checkboxes"}
       - user_levels.each do |(level, index)|
         %div{:class=>"checkbox-container"}
@@ -19,13 +19,13 @@
           %span= level
 
   %div{:class=>"form-group"}
-    = form.label :avatar, translate_text("Click here to upload a profile picture"), class: "file-upload btn btn-primary"
+    = form.label :avatar, translate_text("forms.labels.profile_picture"), class: "file-upload btn btn-primary"
     %br
     = form.file_field :avatar, class: "file-upload"
   %div{:class=>"preview"}
     = user_avatar(@user)
 
   %p
-    = form.submit value: "Update user", class: "btn btn-primary"
+    = form.submit value: translate_text("buttons.actions.update_user"), class: "btn btn-primary"
 
-= link_to 'Back', "javascript:history.back()", class: "btn btn-secondary"
+= link_to translate_text('buttons.actions.back'), "javascript:history.back()", class: "btn btn-secondary"

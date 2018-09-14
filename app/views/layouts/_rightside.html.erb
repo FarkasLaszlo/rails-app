@@ -2,7 +2,7 @@
   <div class="lang-select">
   <%= form_with url: update_language_path, method: "patch" do |form| %>
     <%= form.select :language, languages.map {|id, language| [language, id] }, { selected: cookies.permanent[:language] }, { class: "custom-select" } %>
-    <%= form.submit translate_text("Change language"), class: "btn btn-primary" %>
+    <%= form.submit translate_text("buttons.actions.change_language"), class: "btn btn-primary" %>
   <% end %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 module UsersHelper
   def user_avatar user
-    user.avatar? && image_tag(user.avatar.url, class: "card-img-top") || image_tag("/placeholder-user.png", class: "card-img-top")
+    image_tag((user.avatar? && user.avatar.url || "/placeholder-user.png"), class: "card-img-top")
   end
 
   def registration_date user
@@ -12,7 +12,7 @@ module UsersHelper
   end
 
   def user_has_right_to_write
-    (logged_user = current_user) && (logged_user.vip? || logged_user.admin?)
+    current_user && (current_user.vip? || current_user.admin?)
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_095357) do
+ActiveRecord::Schema.define(version: 2018_09_13_093459) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_095357) do
     t.string "remember_digest"
     t.string "avatar"
     t.string "serial", null: false
-    t.integer "level"
+    t.integer "level", default: 0
     t.index ["serial"], name: "index_users_on_serial", unique: true
   end
 

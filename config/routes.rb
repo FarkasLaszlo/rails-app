@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   resources :categories
-  get 'sessions/new'
-  get 'welcome/index'
   root 'welcome#index'
 
   get    '/registration', to: 'users#new'
@@ -11,24 +9,21 @@ Rails.application.routes.draw do
   delete '/logout',       to: 'sessions#destroy'
 
   get '/posts/:post_id/comments/new', to: 'comments#new', as: :new_post_comment
-  post '/posts/:post_id/comments/new', to: 'comments#create', as: :create_post_comment
+  post '/posts/:post_id/comments/create', to: 'comments#create', as: :create_post_comment
 
   get '/comments/:comment_id/new', to: 'comments#new', as: :new_comment
-  get '/comments/:comment_id/edit', to: 'comments#edit', as: :edit_comment
-  delete '/comments/:comment_id', to: 'comments#destroy', as: :delete_comment
+  get '/comments/:id/edit', to: 'comments#edit', as: :edit_comment
 
   resources :posts do
     resources :comments, except: [:new]
   end
 
-  resources :users, param: :serial do
-    member do
-      get :edit_password, as: :edit_password
-      patch :update_password, as: :update_password
-    end
-  end
+  resources :users, param: :serial
 
-  match 'users/:serial/update' => 'users#update', :via => :patch, :as => :update_user
+  get "/edit_password", to: 'users#edit_password', as: :edit_password
+  patch "/update_password", to: "users#update_password", as: :update_password
+
+  match 'users/:serial' => 'users#update', :via => :patch, :as => :update_user
   patch "/languages", to: "languages#update", :as => :update_language
 
 end

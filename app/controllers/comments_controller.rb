@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params.merge(user_id: current_user.id, post_id: params[:post_id], comment_id: params[:comment_id]))
+    @comment = Comment.new(comment_params.merge(user_id: current_user.id, post_id: params[:post_id], comment_id: params[:id]))
     if @comment.save
       redirect_to post_path(id: @comment.post_id)
       flash[:notice] = "Successfully created"
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   end
 
   def get_comment
-    @comment = Comment.find(params[:id] || params[:comment_id])
+    @comment = Comment.find(params[:id])
   end
 
   def check_user

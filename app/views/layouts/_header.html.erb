@@ -1,15 +1,15 @@
 <div class="nav-links">
-  <%= link_to translate_text('Home'), root_path, class: "home-link btn btn-secondary" %>
-  <%= link_to translate_text('Posts'), posts_path, class: "blog-link btn btn-secondary" %>
-  <%= link_to translate_text("Categories"), categories_path, class: "category-link btn btn-secondary" %>
+  <%= link_to translate_text('pages.title.home'), root_path, class: "home-link btn btn-secondary" %>
+  <%= link_to translate_text('pages.title.posts'), posts_path, class: "blog-link btn btn-secondary" %>
+  <%= link_to translate_text("pages.title.categories"), categories_path, class: "category-link btn btn-secondary" %>
   <% if current_user %>
-    <%= link_to translate_text('Users'), users_path, class: "users-link btn btn-secondary" %>
-      <p><%= translate_text("Welcome") %>:<%= link_to current_user.name, user_path(current_user) %></p>
+    <%= link_to translate_text('pages.title.users'), users_path, class: "users-link btn btn-secondary" %>
+      <p><%= translate_text("pages.title.welcome") %>:<%= link_to current_user.name, user_path(current_user) %></p>
       <%= user_avatar(current_user) %>
-      <%= link_to translate_text("Log out"), logout_path, method: :delete, class: "logout-link btn btn-secondary" %>
+      <%= link_to translate_text("buttons.actions.log_out"), logout_path, method: :delete, class: "logout-link btn btn-secondary" %>
     <% else %>
-      <%= link_to translate_text('Registration'), registration_path, class: "registration-link btn btn-secondary" %>
-      <%= link_to translate_text('Login'), login_path, class: "login-link btn btn-secondary" %>
+      <%= link_to translate_text('pages.title.registration'), registration_path, class: "registration-link btn btn-secondary" %>
+      <%= link_to translate_text('buttons.actions.login'), login_path, class: "login-link btn btn-secondary" %>
     <% end %>
 </div>
 <hr>

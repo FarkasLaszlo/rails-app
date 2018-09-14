@@ -6,11 +6,11 @@
       %p{:class=>"card-text"}= @user.email
       %p{:class=>"card-text"}= @user.level
     %div{:class=>"card-body"}
-      = link_to translate_text("Edit"), edit_user_path(@user), class: "btn btn-primary"
-      = link_to translate_text("Edit password"), edit_password_user_path(@user), class: "btn btn-primary"
-      - if current_user.admin? && current_user != @user
-        = link_to translate_text('Delete'), user_path, method: :delete, class: "btn btn-danger"
-      = link_to translate_text('Back'), users_path, class: "btn btn-secondary"
+      = link_to translate_text("buttons.actions.edit"), edit_user_path(@user), class: "btn btn-primary"
+      = link_to translate_text("buttons.actions.edit_password"), edit_password_path, class: "btn btn-primary"
+      - if !!current_user.admin? ^ !!(current_user == @user)
+        = link_to translate_text('buttons.actions.delete'), user_path, method: :delete, class: "btn btn-danger"
+      = link_to translate_text('buttons.actions.back'), users_path, class: "btn btn-secondary"
     %div{:class=>"card-footer"}
-      %p{:class=>"card-text"}= translate_text("Registration time") + ":"
+      %p{:class=>"card-text"}= translate_text("activerecord.attributes.user.created_at") + ":"
       %p{:class=>"card-text"}= creation_time_of @user

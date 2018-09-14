@@ -65,12 +65,19 @@ en:
       "Crossing into established events is strictly forbidden. Except for cheap tricks.",
       "I have lived a long life, and I have seen a few things.\n I walked away from the Last Great Time War. I marked the passing of the Time Lords. I saw the birth of the universe and I watched as time ran out, moment by moment, until nothing remained; no time, no space. Just me.\n I walked in universes where the laws of physics were devised by the mind of a madman.\n I watched universes freeze and creations burn. I have seen things you wouldn't believe, I have lost things you will never understand. And I know things, secrets that must never be told, knowledge that must never be spoken",
       ]
+  application:
+    name: Blog
   activerecord:
     attributes:
       user:
+        name: Name
+        created_at: "Registration time"
         email: "E-mail address"
+        avatar: Profile picture
+        level: Access level
       post:
-        category_ids: " "
+        categories:
+          all: All
     errors:
       models:
         user:
@@ -80,3 +87,43 @@ en:
             email:
               invalid: "is not valid. Please use an existing e-mail address"
               blank: "can't be blank"
+  buttons:
+    actions:
+      show: Show
+      edit: Edit
+      delete: Delete
+      back: Back
+      edit_password: Edit password
+      update_user: Save changes
+      update_password: Update password
+      log_out: Logout
+      login: Login
+      change_language: Change language
+      my_posts: My posts
+      search: Search
+      create_account: Create an account
+      new_post: Write a new post
+      new_user: New User? Sign up now
+  pages:
+    title:
+      users: Users
+      welcome: Welcome
+      categories: Categories
+      posts: Posts
+      home: Home
+      registration: Registration
+      advanced_search: Advanced search
+  forms:
+    labels:
+      level_select: Select a level
+      profile_picture: Click here to upload a profile picture
+      password: Password
+      password_confirmation: Password confirmation
+      current_password: Current password
+      title: Title
+      content: Content
+      category: Category
+      writer: Writer
+      no_picture: No files currently selected for the upload
+      password_visibility: Show/Hide password
+      remember: Remember me on this computer

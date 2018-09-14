@@ -4,7 +4,7 @@
   <%= render 'comment', comment: @comment.comment %>
 <% end %>
 
-<%= form_with scope: :comment, url: create_post_comment_path(comment_id: params[:comment_id], post_id: params[:post_id] || @comment.comment.post_id) , local: true do |form| %>
+<%= form_with scope: :comment, url: create_post_comment_path(id: params[:comment_id], post_id: params[:post_id] || @comment.comment.post_id) , local: true do |form| %>
   <%= render "layouts/errors", locals: @comment %>
   <p>
   <%= form.label :content, translate_text("Content") %><br>

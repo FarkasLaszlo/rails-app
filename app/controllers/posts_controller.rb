@@ -7,8 +7,6 @@ class PostsController < ApplicationController
   before_action :has_access, only: [:edit, :update, :destroy]
 
   def index
-    @keys = User.new.attributes.keys - ["created_at", "updated_at", "id"]
-    @categories = Category.all
     @posts = Post.filter_by params[:search]
   end
 
@@ -27,13 +25,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.includes(:user).where("comment_id IS NULL").order("created_at DESC")
+    @comments = @post.top_level_comments.includes(:user)
   end
 
   def update
     if @post.update(post_params)
-      redirect_to action: 'show'
       flash[:notice] = "Successfully updated"
+      redirect_to action: 'show'
     else
       render 'edit'
     end

@@ -1,48 +1,64 @@
 hu:
-  Edit: Szerkesztés
-  Edit password: Jelszó megváltoztatása
-  Delete: Törlés
-  Back: Vissza
-  Registration time: A regisztráció ideje
-  Posts: Posztok
-  Home: Főoldal
-  Categories: Kategóriák
-  Users: Felhasználók
-  Welcome: Üdv
-  Log out: Kijelentkezés
-  Login: Bejelentkezés
-  Registration: Regisztráció
-  Change language: Nyelv választás
-  My posts: Posztjaim
-  Advanced search: Részletes keresés
-  Title: Cím
-  Content: Tartalom
-  Category: Kategória
-  Writer: Író
-  Search: Keresés
+  application:
+    name: Blog
+  activerecord:
+    attributes:
+      user:
+        name: "Név"
+        created_at: "A regisztráció ideje"
+        email: "E-mail cím"
+        avatar: Profilkép
+        level: Jogosultsági szint
+      post:
+        categories:
+          all: Mind
+  buttons:
+    actions:
+      show: Megtekintés
+      edit: Szerkesztés
+      delete: Törlés
+      back: Vissza
+      edit_password: Jelszó megváltoztatása
+      update_user: Változtatások mentése
+      update_password: Jelszó megváltoztatása
+      log_out: Kijelentkezés
+      login: Bejelentkezés
+      change_language: Nyelv választás
+      my_posts: Posztjaim
+      search: Keresés
+      create_account: Felhasználó létrehozása
+      new_post: Írj egy új posztot
+      new_user: Még nem regisztráltál ezen az oldalon? Tedd meg most
+  pages:
+    title:
+      users: Felhasználók
+      welcome: Üdv
+      categories: Kategóriák
+      posts: Posztok
+      home: Főoldal
+      registration: Regisztráció
+      advanced_search: Részletes keresés
+  forms:
+    labels:
+      level_select: Válassz egy szintet
+      profile_picture: Profilkép feltöltéséhez kattints ide
+      password: Jelszó
+      password_confirmation: Jelszó megerősítése
+      current_password: Jelenlegi jelszó
+      title: Cím
+      content: Tartalom
+      category: Kategória
+      writer: Író
+      no_picture: Jelenleg nincs profilkép kiválasztva
+      password_visibility: Jelszó megjelenítése/elrejtése
+      remember: Emlékezz rám ezen a gépen
+
+
+
   quote: idézet
   fact: tény
-  Write a new post: Írj egy új posztot
-  Name: Név
-  Avatar: Profilkép
-  Level: Jogosultsági szint
-  Show: Megtekintés
-  E-mail address: E-mail cím
-  Password: Jelszó
-  Password confirmation: Jelszó megerősítése
-  Create an account: Felhasználó létrehozása
-  Registration Page: Regisztráció
-  No files currently selected for the upload: Jelenleg nincs profilkép kiválasztva
   Written by: Írta
   Read this article: Elolvasom
-  All: Mind
-  Science: Tudomány
-  Health: Egészség
-  Music: Zene
-  Culture: Kultúra
-  Programming: Programozás
-  Nature: Természet
-  Travel: Utazás
   Successfully updated: Sikeresen módosítva
   Successfully created: Sikeresen létrehozva
   Reply: Válasz
@@ -64,12 +80,6 @@ hu:
   To write a post, you have to: Ahhoz, hogy új posztot tudj írni,
   or: vagy
   you have to be a user with VIP privileges: legalább VIP szintű felhasználónak kell lenned.
-  Blog app: Blog applikáció
-  Click here to upload a profile picture: Profilkép feltöltéséhez kattints ide
-  Toggle password visibility: Jelszó megjelenítése/elrejtése
-  Update password: Jelszó módosítása
-  Current password: Jelenlegi jelszó
-  You don't have rights to do this: Ehhez a művelethez nincs jogosultságod
+  BYou don't have rights to do this: Ehhez a művelethez nincs jogosultságod
   You have to login to do this: Ehhez be kell jelenetkezned
-  Remember me on this computer: Emlékezz rám ezen a gépen
   New User? Sign up now: Még nem regisztráltál ezen az oldalon? Tedd meg most
