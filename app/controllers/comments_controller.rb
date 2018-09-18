@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def update
     if @comment.update(comment_params)
       redirect_to post_path(id: @comment.post_id)
-      flash[:notice] = "Successfully updated"
+      flash[:notice] = "notice.successfully updated"
     else
       render 'edit'
     end
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params.merge(user_id: current_user.id, post_id: params[:post_id], comment_id: params[:id]))
     if @comment.save
       redirect_to post_path(id: @comment.post_id)
-      flash[:notice] = "Successfully created"
+      flash[:notice] = "notice.successfully created"
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy!
-    flash[:notice] = "Successfully deleted"
+    flash[:notice] = "notice.successfully deleted"
     redirect_to post_path(id: @comment.post_id)
   end
 
@@ -45,14 +45,14 @@ class CommentsController < ApplicationController
   def check_user
     unless current_user
       redirect_to login_path
-      flash[:danger] = "You have to login to do this"
+      flash[:danger] = "danger.need_login"
     end
   end
 
   def has_access
     unless current_user == @comment.user || current_user.admin?
       redirect_to post_path(params[:post_id])
-      flash[:danger] = "You don't have rights to do this"
+      flash[:danger] = "danger.no_access"
     end
   end
 end

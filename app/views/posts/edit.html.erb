@@ -1,22 +1,22 @@
-<h1><%= translate_text "Edit post" %></h1>
+<h1><%= t "pages.title.edit post" %></h1>
 <%= form_for @post do |form| %>
   <%= render "layouts/errors", locals: @post %>
   <p>
-  <%= form.label :title, translate_text("Title") %><br>
+  <%= form.label :title, t("activerecord.attributes.post.title") %><br>
   <%= form.text_field(:title, {:class => "form-control"}) %>
   </p>
 
   <p>
-  <%= form.label :content, translate_text("Content") %><br>
+  <%= form.label :content, t("activerecord.attributes.post.content") %><br>
   <%= form.text_area(:content, {:class => "form-control", rows: "15"}) %>
   </p>
   <%= render "/categories/select.html.erb", locals: { post: @post } %>
 
   <p>
-  <%= form.submit(translate_text("Submit changes"), {:class => "btn btn-primary"}) %>
+  <%= form.submit(t("buttons.actions.submit changes"), {:class => "btn btn-primary"}) %>
   </p>
 
 <% end %>
 
-<%= link_to translate_text('Back'), post_path(@post) %>
+<%= link_to t('buttons.actions.back'), post_path(@post), class: "btn btn-secondary" %>
 

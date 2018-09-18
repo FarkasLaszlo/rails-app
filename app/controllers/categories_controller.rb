@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to @category, notice: 'notice.successfully created' }
       else
         format.html { render :new }
       end
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to @category, notice: 'notice.successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to categories_url, notice: 'notice.successfully destroyed.' }
     end
   end
 
@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
     def has_access
       unless current_user && current_user.admin?
         redirect_to categories_path
-        flash[:danger] = "You don't have rights to do this"
+        flash[:danger] = "danger.no_access"
       end
     end
 end

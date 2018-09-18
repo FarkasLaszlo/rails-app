@@ -1,16 +1,16 @@
-<h1><%= translate_text "Edit comment"%></h1>
+<h1><%= t "pages.title.edit comment"%></h1>
 <%= form_for @comment, url: post_comment_path(id: params[:id], post_id: @comment.post_id ) do |form| %>
   <%= render "layouts/errors", locals: @comment %>
   <p>
-  <%= form.label :content, translate_text("Content") %><br>
+  <%= form.label :content, t("activerecord.attributes.comment.content") %><br>
   <%= form.text_area(:content, {:class => "form-control"}) %>
   </p>
 
   <p>
-  <%= form.submit(translate_text("Submit changes"), {:class => "btn btn-primary"}) %>
+  <%= form.submit(t("buttons.actions.submit changes"), {:class => "btn btn-primary"}) %>
   </p>
 
 <% end %>
 
-<%= link_to translate_text('Back'), post_path(id: @comment.post_id), class: "btn btn-secondary" %>
+<%= link_to t('buttons.actions.back'), post_path(id: @comment.post_id), class: "btn btn-secondary" %>
 

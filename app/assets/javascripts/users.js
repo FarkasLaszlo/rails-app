@@ -46,9 +46,8 @@ function togglePassword() {
 
 function handleImageUpload(event, original_text) {
   return function updateImageDisplay() {
-    const input = document.querySelector('input.file-upload');
     const preview = document.querySelector('.preview');
-    const curFiles = input.files;
+    const curFiles = document.querySelector('input.file-upload').files;
 
     preview.innerHTML = "";
     if(curFiles.length === 0) {

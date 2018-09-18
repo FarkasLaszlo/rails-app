@@ -1,18 +1,18 @@
-<h3 class="notice alert-success"><%= translate_text notice if notice %></h3>
-<h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
-<h1 class="title"><%= translate_text "application.name" %></h1>
+<h3 class="notice alert-success"><%= t notice if notice %></h3>
+<h3 class="notice alert-danger"><%= t flash[:danger] if flash[:danger] %></h3>
+<h1 class="title"><%= t "application.name" %></h1>
 
 <% if !current_user %>
-  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %><%= link_to translate_text('login'), login_path, class: "login-link btn btn-warning" %></span></h3>
+  <h3><span class="badge badge-pill badge-danger"><%= t "To write a post, you have to" %><%= link_to t('login'), login_path, class: "login-link btn btn-warning" %></span></h3>
 <% elsif !user_has_right_to_write %>
-  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
+  <h3><span class="badge badge-pill badge-danger"><%= t "To write a post, you have to" %> <%= t "you have to be a user with VIP privileges" %></span></h3>
 <% else %>
-  <%= link_to translate_text("buttons.actions.new_post"), new_post_path, class: "btn btn-primary" %>
+  <%= link_to t("buttons.actions.new_post"), new_post_path, class: "btn btn-primary" %>
 <% end %>
 <hr>
 <div class="card text-black bg-warning mb-3">
   <div class="card-header">
-    <h3 class="card-title">Dr Who <%=translate_text "quote"%></h3>
+    <h3 class="card-title">Dr Who <%=t "faker.quote"%></h3>
   </div>
   <div class="card-body">
     <h5 class="card-text"><%= Faker::DrWho.quote %></h5>
@@ -21,7 +21,7 @@
 
 <div class="card text-white bg-danger mb-3">
   <div class="card-header">
-    <h3 class="card-title">New Girl <%=translate_text "quote"%></h3>
+    <h3 class="card-title">New Girl <%=t "faker.quote"%></h3>
   </div>
   <div class="card-body">
     <h5 class="card-text"><%= Faker::NewGirl.quote %></h5>
@@ -30,7 +30,7 @@
 
 <div class="card text-white bg-dark mb-3">
   <div class="card-header">
-    <h3 class="card-title">Game of Thrones <%=translate_text "quote"%></h3>
+    <h3 class="card-title">Game of Thrones <%=t "faker.quote"%></h3>
   </div>
   <div class="card-body">
     <h5 class="card-text"><%= Faker::GameOfThrones.quote %></h5>
@@ -39,7 +39,7 @@
 
 <div class="card text-white bg-info mb-3">
   <div class="card-header">
-    <h3 class="card-title">Chuck Norris <%=translate_text "fact"%></h3>
+    <h3 class="card-title">Chuck Norris <%=t "faker.fact"%></h3>
   </div>
   <div class="card-body">
     <h5 class="card-text"><%= Faker::ChuckNorris.fact %></h5>

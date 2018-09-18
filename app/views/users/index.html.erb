@@ -1,9 +1,9 @@
-<h1> <%= translate_text "pages.title.users" %></h1>
+<h1> <%= t "pages.title.users" %></h1>
 <table class="table table-striped table-bordered">
   <tr>
     <% @keys.each do |key| %>
       <th>
-        <%= translate_text "activerecord.attributes.user.#{key}" %>
+        <%= t "activerecord.attributes.user.#{key}" %>
       </th>
     <% end %>
     <th></th>
@@ -23,14 +23,14 @@
           <% end%>
         </td>
       <% end %>
-      <td class="align-middle"><%= link_to translate_text("buttons.actions.show"), user_path(user), class: "btn btn-primary" %></td>
-      <td class="align-middle"><%= link_to translate_text("buttons.actions.edit"), edit_user_path(user), class: "btn btn-primary" %></td>
+      <td class="align-middle"><%= link_to t("buttons.actions.show"), user_path(user), class: "btn btn-primary" %></td>
+      <td class="align-middle"><%= link_to t("buttons.actions.edit"), edit_user_path(user), class: "btn btn-primary" %></td>
       <% if !!current_user.admin? ^ !!(current_user == user) %>
-        <td class="align-middle"><%= link_to translate_text('buttons.actions.delete'), user_path(user), method: :delete, class: "btn btn-danger" %></td>
+        <td class="align-middle"><%= link_to t('buttons.actions.delete'), user_path(user), method: :delete, class: "btn btn-danger" %></td>
       <% else %>
         <td></td>
       <% end %>
     </tr>
   <% end %>
 </table>
-<%= link_to translate_text('buttons.actions.back'), root_path, class: "btn btn-secondary" %>
+<%= link_to t('buttons.actions.back'), root_path, class: "btn btn-secondary" %>

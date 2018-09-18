@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(user_id: current_user.id))
     if @post.save
       redirect_to action: 'index'
-      flash[:notice] = "Successfully created"
+      flash[:notice] = "notice.successfully created"
     else
       render 'new'
     end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = "Successfully updated"
+      flash[:notice] = "notice.successfully updated"
       redirect_to action: 'show'
     else
       render 'edit'
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
-    flash[:notice] = "Successfully destroyed"
+    flash[:notice] = "notice.successfully destroyed"
     redirect_to action: 'index'
   end
 
@@ -62,13 +62,14 @@ class PostsController < ApplicationController
   def check_user
     @user = current_user
     unless @user
+      flash[:danger] = "danger.need_login"
       redirect_to login_path
-      flash[:danger] = "You have to login to do this"
     end
   end
 
   def has_access
     unless @user == @post.user || @user.admin?
+      flash[:danger] = "danger.no_access"
       redirect_to posts_path
     end
   end

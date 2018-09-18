@@ -1,26 +1,27 @@
-<p class="notice alert-success"><%= translate_text notice if notice %></p>
+<p class="notice alert-success"><%= t notice if notice %></p>
+<p class="notice alert-danger"><%= t flash[:danger] if flash[:danger] %></p>
 <div class="card text-white bg-info mb-3">
   <div class="card-header">
     <h1 class="card-title"><%= @post.title %></h1>
-    <h6 class="card-subtitle"><%= translate_text("Written by") %> <%= @post.user&.name || translate_text("Deleted user") %></h6>
+    <h6 class="card-subtitle"><%= t("activerecord.attributes.post.written by") %> <%= @post.user&.name || t("activerecord.attributes.user.not found") %></h6>
   </div>
   <div class="card-body">
     <p class="card-text"><%= @post.content %></p>
-    <p class="card-text"><%= translate_text("Categories") %>:
+    <p class="card-text"><%= t("activerecord.attributes.post.categories.name") %>:
       <% @post.categories.each do |category| %>
-        <span class="badge badge-pill badge-light"><%= translate_text category.name %></span>
+        <span class="badge badge-pill badge-light"><%= t category.name %></span>
     <% end %>
     </p>
   </div>
   <div class="card-footer">
     <%= creation_time_of @post %>
-    <%= link_to translate_text("Edit"), edit_post_path(@post), class: "btn btn-secondary" %>
-    <%= link_to translate_text("Delete"), post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-    <%= link_to translate_text("Back"), posts_path, class: "btn btn-secondary" %>
+    <%= link_to t("buttons.actions.edit"), edit_post_path(@post), class: "btn btn-secondary" %>
+    <%= link_to t("buttons.actions.delete"), post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%= link_to t("buttons.actions.back"), posts_path, class: "btn btn-secondary" %>
   </div>
 </div>
 
-<h3><%= translate_text "Comments" %></h3>
-<%= link_to translate_text("Add comment"), new_post_comment_path(post_id: @post.id), class:"btn btn-primary" %>
+<h3><%= t "pages.title.comments" %></h3>
+<%= link_to t("buttons.actions.add comment"), new_post_comment_path(post_id: @post.id), class:"btn btn-primary" %>
 <hr>
 <%= render @comments %>

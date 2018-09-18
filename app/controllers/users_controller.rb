@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to action: 'new', controller: 'sessions'
-      flash[:notice] = "Successfully registrated"
+      flash[:notice] = "notice.successfully registrated"
     else
       render 'new'
     end
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy!
-    flash[:notice] = "Successfully deleted"
+    flash[:notice] = "notice.successfully deleted"
     redirect_to action: 'index'
   end
 
   def update
     if @user.update(user_params)
       redirect_to @user
-      flash[:notice] = "Successfully updated"
+      flash[:notice] = "notice.successfully updated"
     else
       render 'edit'
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user.password_change = true
     if @user.update(user_params)
       redirect_to @user
-      flash[:notice] = "Successfully updated password"
+      flash[:notice] = "notice.successfully updated password"
     else
       render 'edit_password'
     end
@@ -64,14 +64,14 @@ class UsersController < ApplicationController
   def check_user
     unless current_user
       redirect_to login_path
-      flash[:danger] = "You have to login to do this"
+      flash[:danger] = "danger.need_login"
     end
   end
 
   def has_access
     unless current_user.id == @user.id || current_user.admin?
       redirect_to users_path
-      flash[:danger] = "You don't have rights to do this"
+      flash[:danger] = "danger.no_access"
     end
   end
 end

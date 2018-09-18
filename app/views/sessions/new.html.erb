@@ -1,26 +1,26 @@
-<h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
+<h3 class="notice alert-danger"><%= t flash[:danger] if flash[:danger] %></h3>
 
-<h1><%= translate_text "buttons.actions.login" %></h1>
+<h1><%= t "buttons.actions.login" %></h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
 
-  <%= f.label :email, translate_text("activerecord.attributes.user.email") %>
+  <%= f.label :email, t("activerecord.attributes.user.email") %>
   <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password, translate_text("forms.labels.password") %>
+  <%= f.label :password, t("activerecord.attributes.user.password") %>
   <%= f.password_field :password, class: 'form-control' %>
 
   <div class="custom-control custom-checkbox my-1 mr-sm-2">
     <input name="session[remember_me]" type="hidden" value="0">
     <input type="checkbox" class="custom-control-input" value="1" name="session[remember_me]" id="session_remember_me">
-    <label class="custom-control-label" for="session_remember_me"><%= translate_text "forms.labels.remember" %></label>
+    <label class="custom-control-label" for="session_remember_me"><%= t "forms.labels.remember" %></label>
   </div>
 
   <br>
-  <%= f.submit translate_text("buttons.actions.login"), class: "btn btn-primary" %>
+  <%= f.submit t("buttons.actions.login"), class: "btn btn-primary" %>
 <% end %>
 
 <div class="nav" style="margin-top: 5px;">
-<%= link_to translate_text('buttons.actions.back'), "javascript:history.back()", class: "btn btn-secondary" %>
-<%= link_to translate_text("buttons.actions.new_user") + "!", registration_path, class: "btn btn-success" %>
+<%= link_to t('buttons.actions.back'), "javascript:history.back()", class: "btn btn-secondary" %>
+<%= link_to t("buttons.actions.new_user") + "!", registration_path, class: "btn btn-success" %>
 </div>

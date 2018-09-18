@@ -1,17 +1,34 @@
 hu:
+  time:
+    formats:
+      default: '%Y %B %d %H:%M:%S'
   application:
     name: Blog
   activerecord:
     attributes:
       user:
-        name: "Név"
+        name: &name Név
         created_at: "A regisztráció ideje"
         email: "E-mail cím"
         avatar: Profilkép
         level: Jogosultsági szint
+        password: Jelszó
+        password_confirmation: Jelszó megerősítése
+        current_password: Jelenlegi jelszó
+        not found: Törölt felhasználó
       post:
         categories:
+          name: &categories Kategóriák
           all: Mind
+        title: Cím
+        content: &content Tartalom
+        category: Kategória
+        writer: Író
+        written by: Írta
+      comment:
+        content: *content
+      category:
+        name: *name
   buttons:
     actions:
       show: Megtekintés
@@ -29,57 +46,49 @@ hu:
       create_account: Felhasználó létrehozása
       new_post: Írj egy új posztot
       new_user: Még nem regisztráltál ezen az oldalon? Tedd meg most
+      add comment: Komment írása
+      submit post: Poszt létrehozása
+      write post: Új poszt írása
+      read article: Elolvasom
+      submit changes: Változtatások mentése
+      submit comment: Komment létrehozása
+      edit comment: &edit_comment Komment szerkesztése
+      reply: Válasz
+      new category: &new_category Új kategória
+      save: Mentés
   pages:
     title:
       users: Felhasználók
       welcome: Üdv
-      categories: Kategóriák
+      categories: *categories
       posts: Posztok
       home: Főoldal
       registration: Regisztráció
       advanced_search: Részletes keresés
+      comments: Kommentek
+      new post: Új poszt
+      new comment: Új komment
+      edit post: Post szerkesztése
+      edit comment: *edit_comment
+      new category: *new_category
+      edit category: Kategória szerkesztése
   forms:
     labels:
       level_select: Válassz egy szintet
-      profile_picture: Profilkép feltöltéséhez kattints ide
-      password: Jelszó
-      password_confirmation: Jelszó megerősítése
-      current_password: Jelenlegi jelszó
-      title: Cím
-      content: Tartalom
-      category: Kategória
-      writer: Író
       no_picture: Jelenleg nincs profilkép kiválasztva
       password_visibility: Jelszó megjelenítése/elrejtése
       remember: Emlékezz rám ezen a gépen
-
-
-
-  quote: idézet
-  fact: tény
-  Written by: Írta
-  Read this article: Elolvasom
-  Successfully updated: Sikeresen módosítva
-  Successfully created: Sikeresen létrehozva
-  Reply: Válasz
-  Edit comment: Komment szerkesztése
-  Submit your comment: Komment létrehozása
-  Add comment: Komment írása
-  Comments: Kommentek
-  New comment: Új komment
-  Submit changes: Változtatások mentése
-  Edit post: Poszt szerkesztése
-  New post: Új poszt
-  Submit your writing: Poszt létrehozása
-  New category: Új kategória
-  Editing category: Kategória módosítása
-  Save: Mentés
-  Successfully logged in: Sikeres bejelentkezés
-  Successfully logged out: Sikeres kijelentkezés
-  login: be kell jelentkezned
-  To write a post, you have to: Ahhoz, hogy új posztot tudj írni,
-  or: vagy
-  you have to be a user with VIP privileges: legalább VIP szintű felhasználónak kell lenned.
-  BYou don't have rights to do this: Ehhez a művelethez nincs jogosultságod
-  You have to login to do this: Ehhez be kell jelenetkezned
-  New User? Sign up now: Még nem regisztráltál ezen az oldalon? Tedd meg most
+      profile_picture: Profilkép feltöltéséhez kattints ide
+  faker:
+    quote: idézet
+    fact: tény
+  notice:
+    successfully updated: Sikeresen módosítva
+    successfully created: Sikeresen létrehozva
+    successfully destroyed: Sikeresen törölve
+    successfull login: Sikeres bejelentkezés
+    successfull logout: Sikeres kijelentkezés
+    successfully updated password: Sikeres jelszó módosítás
+  danger:
+    need_login: Ehhez be kell jelentkezned
+    no_access: Ehhez nincs jogosultságod

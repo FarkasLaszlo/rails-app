@@ -1,4 +1,4 @@
-<div><%= link_to translate_text("activerecord.attributes.post.categories.all"), posts_path, class: "btn btn-info" %></div>
+<div><%= link_to t("activerecord.attributes.post.categories.all"), posts_path, class: "btn btn-info" %></div>
 <% categories.each do |category| %>
   <div>
     <%= link_to category.name, posts_path(search: { category: category.name, user: params[:search] && params[:search][:user] }), class: "btn btn-info" %>

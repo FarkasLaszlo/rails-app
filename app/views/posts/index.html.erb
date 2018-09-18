@@ -1,29 +1,29 @@
-<h3 class="notice alert-success"><%= translate_text notice if notice %></h3>
-<h3 class="notice alert-danger"><%= translate_text flash[:danger] if flash[:danger] %></h3>
-<h1><%= translate_text "Posts" %></h1>
+<h3 class="notice alert-success"><%= t notice if notice %></h3>
+<h3 class="notice alert-danger"><%= t flash[:danger] if flash[:danger] %></h3>
+<h1><%= t "pages.title.posts" %></h1>
 <% if !current_user %>
-  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %><%= link_to translate_text('login'), login_path, class: "login-link btn btn-warning" %></span></h3>
+  <h3><span class="badge badge-pill badge-danger"><%= t "To write a post, you have to" %><%= link_to t('login'), login_path, class: "login-link btn btn-warning" %></span></h3>
 <% elsif !user_has_right_to_write %>
-  <h3><span class="badge badge-pill badge-danger"><%= translate_text "To write a post, you have to" %> <%= translate_text "you have to be a user with VIP privileges" %></span></h3>
+  <h3><span class="badge badge-pill badge-danger"><%= t "To write a post, you have to" %> <%= t "you have to be a user with VIP privileges" %></span></h3>
 <% else %>
-  <%= link_to translate_text("Write a new post"), new_post_path, class: "btn btn-primary" %>
+  <%= link_to t("buttons.actions.write post"), new_post_path, class: "btn btn-primary" %>
 <% end %>
 <div class="blogs">
   <% @posts.each do |post| %>
     <div class="card text-white border-dark bg-info mb-3">
       <div class="card-header">
-        <h5 class="card-title"><%= translate_text "Title" %>: <%= post.title %></h5>
-        <h6 class="card-subtitle"><%= translate_text "Written by" %> <%= post.user&.name || "Deleted user" %></h6>
+        <h5 class="card-title"><%= t "activerecord.attributes.post.title" %>: <%= post.title %></h5>
+        <h6 class="card-subtitle"><%= t "activerecord.attributes.post.written by" %> <%= post.user&.name || "Deleted user" %></h6>
       </div>
       <div class="card-body">
-        <p class="card-text"><%= translate_text "Content" %>: <%= truncated_content(post) %></p>
-        <p class="card-text"><%= translate_text "Categories" %>:
+        <p class="card-text"><%= t "activerecord.attributes.post.content" %>: <%= truncated_content(post) %></p>
+        <p class="card-text"><%= t "activerecord.attributes.post.categories.name" %>:
           <% post.categories.each do |category| %>
-            <span class="badge badge-pill badge-light"><%= translate_text category.name %></span>
+            <span class="badge badge-pill badge-light"><%= t category.name %></span>
           <% end %>
         </p>
       </div>
-      <div class="card-footer"><%= creation_time_of post %><%= link_to translate_text("Read this article"), post_path(post), class: "btn btn-success" %></div>
+      <div class="card-footer"><%= creation_time_of post %><%= link_to t("buttons.actions.read article"), post_path(post), class: "btn btn-success" %></div>
     </div>
   <% end %>
 </div>

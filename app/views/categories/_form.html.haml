@@ -1,7 +1,7 @@
 = form_for @category do |f|
   = render "layouts/errors", locals: @category
   .field
-    = f.label :name, translate_text("Name")
+    = f.label :name, t("activerecord.attributes.category.name")
     = f.text_field :name, value: @category.name, class: "form-control"
   .actions
-    = f.submit translate_text('Save'), class: "btn btn-primary"
+    = f.submit t('buttons.actions.save'), class: "btn btn-primary"

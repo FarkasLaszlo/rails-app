@@ -30,7 +30,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      default: '%d %B %Y %I:%m:%S %p'
   faker:
+    quote: quote
+    fact: fact
     dr_who:
       quotes: [
       "Everybody knows that everybody dies. But not every day. Not today. Some days are special. Some days are so, so blessed. Some days, nobody dies at all. Now and then, every once in a very long while, every day in a million days, when the wind stands fair and the Doctor comes to call, everybody lives.",
@@ -70,14 +75,28 @@ en:
   activerecord:
     attributes:
       user:
-        name: Name
+        name: &name Name
         created_at: "Registration time"
         email: "E-mail address"
         avatar: Profile picture
         level: Access level
+        password: Password
+        password_confirmation: Password confirmation
+        current_password: Current password
+        not found: Deleted user
       post:
         categories:
+          name: &categories Categories
           all: All
+        title: Title
+        content: &content Content
+        category: Category
+        writer: Writer
+        written by: Written by
+      comment:
+        content: *content
+      category:
+        name: *name
     errors:
       models:
         user:
@@ -104,26 +123,46 @@ en:
       create_account: Create an account
       new_post: Write a new post
       new_user: New User? Sign up now
+      add comment: Add comment
+      submit post: Submit your writing
+      write post: Write a new post
+      read article: Read this article
+      submit changes: Submit changes
+      submit comment: Submit comment
+      edit comment: &edit_comment Edit comment
+      reply: Reply
+      new category: &new_category New category
+      save: Save
   pages:
     title:
       users: Users
       welcome: Welcome
-      categories: Categories
+      categories: *categories
       posts: Posts
       home: Home
       registration: Registration
       advanced_search: Advanced search
+      comments: Comments
+      new post: New post
+      new comment: New comment
+      edit post: Edit post
+      edit comment: *edit_comment
+      new category: *new_category
+      edit category: Edit category
   forms:
     labels:
-      level_select: Select a level
       profile_picture: Click here to upload a profile picture
-      password: Password
-      password_confirmation: Password confirmation
-      current_password: Current password
-      title: Title
-      content: Content
-      category: Category
-      writer: Writer
+      level_select: Select a level
       no_picture: No files currently selected for the upload
       password_visibility: Show/Hide password
       remember: Remember me on this computer
+  notice:
+    successfully updated: Successfully updated
+    successfully created: Successfully created
+    successfully destroyed: Successfully destroyed
+    successfull login: Successfully logged in
+    successfull logout: Successfully logged out
+    successfully updated password: Password successfully updated
+  danger:
+    need_login: You need to login to do this
+    no_access: You don't have access to do this

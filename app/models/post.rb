@@ -18,8 +18,18 @@ class Post < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def self.filter_by search_params
-    (values = []) && result = search_params && search_params.to_unsafe_h.inject([]) { |result_array, (key, value)| result_array << (value.present? && values << "%#{value}%" && " #{SEARCH_KEYS[key.to_sym]} LIKE ? " || nil) }.compact.join("AND")
-    result.present? && values.unshift(result) && joins(:categories, :user).where(values).distinct || where("true")
+    values = []
+    result = search_params
+              .to_unsafe_h
+              .inject([]) { |result_array, (key, value)| 
+                if value.present?
+                  values << "%#{value}%"
+                  result_array << " #{SEARCH_KEYS[key.to_sym]} LIKE ? "
+                end
+                result_array
+              }
+              .join("AND") if search_params
+    result.present? ? joins(:categories, :user).where(values.unshift(result)).distinct : where("true")
   end
 
 end

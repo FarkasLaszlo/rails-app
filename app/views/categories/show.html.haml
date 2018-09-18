@@ -2,9 +2,9 @@
 
 %div{:class=>"card text-white bg-dark mb-3 comment"}
   %div{:class=>"card-header"}
-    %p{:class=>"card-title"}= translate_text("Name") + ":"
+    %p{:class=>"card-title"}= t("activerecord.attributes.category.name") + ":"
   %div{:class=>"card-body"}
-    %p{:class=>"card-text"}= translate_text @category.name
+    %p{:class=>"card-text"}= t @category.name
 
-= link_to translate_text('Edit'), edit_category_path(@category), class: "btn btn-primary"
-= link_to translate_text('Back'), categories_path, class: "btn btn-secondary"
+= link_to t('buttons.actions.edit'), edit_category_path(@category), class: "btn btn-primary"
+= link_to t('buttons.actions.back'), categories_path, class: "btn btn-secondary"
